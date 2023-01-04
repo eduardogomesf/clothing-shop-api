@@ -4,6 +4,7 @@ import { Hasher } from "@/application/protocols/utils/cryptography/hasher.util"
 import { ImpCreateCustomerUseCase } from "../../../src/application/use-cases/customer/imp-create-customer.use-case"
 import { HasherStub } from "../mocks/utils/cryptography/hasher.util.mock"
 import { CreateCustomerRepositoryStub } from "../mocks/databases/repositories/create-customer.repository.mock"
+import { MissingParamsException } from "../../../src/application/exceptions/missing-params.exception"
 
 describe('CreateCustomerUseCase', () => {
   let hasher: Hasher
@@ -26,7 +27,7 @@ describe('CreateCustomerUseCase', () => {
       password: 'any-password'
     } as any)
 
-    await expect(promise).rejects.toThrowError(new Error('Invalid customer data'))
+    await expect(promise).rejects.toThrowError(new MissingParamsException(['name']))
   })
 
   it('should not be able to create a new customer without email', async () => {
@@ -36,7 +37,7 @@ describe('CreateCustomerUseCase', () => {
       password: 'any-password'
     } as any)
 
-    await expect(promise).rejects.toThrowError(new Error('Invalid customer data'))
+    await expect(promise).rejects.toThrowError(new MissingParamsException(['email']))
   })
 
   it('should not be able to create a new customer without cellphoneNumber', async () => {
@@ -46,7 +47,7 @@ describe('CreateCustomerUseCase', () => {
       password: 'any-password'
     } as any)
 
-    await expect(promise).rejects.toThrowError(new Error('Invalid customer data'))
+    await expect(promise).rejects.toThrowError(new MissingParamsException(['cellphoneNumber']))
   })
 
   it('should not be able to create a new customer without password', async () => {
@@ -56,7 +57,7 @@ describe('CreateCustomerUseCase', () => {
       cellphoneNumber: '11995433245',
     } as any)
 
-    await expect(promise).rejects.toThrowError(new Error('Invalid customer data'))
+    await expect(promise).rejects.toThrowError(new MissingParamsException(['password']))
   })
 
   it('should be able to create a new customer', async () => {
