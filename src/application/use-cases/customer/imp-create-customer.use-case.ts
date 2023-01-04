@@ -4,6 +4,7 @@ import {
 } from '@/domain/use-cases/customer/create-customer.use-case'
 import { CreateCustomerRepository } from '@/application/protocols/database/repositories/customer/create-customer.repository'
 import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util'
+import { PayloadValidator } from '../../helpers/payload-validator.helper'
 
 export class ImpCreateCustomerUseCase implements CreateCustomerUseCase {
   constructor(
@@ -14,8 +15,12 @@ export class ImpCreateCustomerUseCase implements CreateCustomerUseCase {
   async create (dto: CreateCustomerUseCaseDTO): Promise<void> {
     const { name, email, cellphoneNumber, password } = dto
 
-    if (!name || !email || !cellphoneNumber || !password
-    ) {
+    const paramsMissingValidation = PayloadValidator.isAnyParamMissing(
+      ['name', 'email', 'cellphoneNumber', 'password'],
+      { name, email, cellphoneNumber, password }
+    )
+
+    if (paramsMissingValidation.error && paramsMissingValidation.missingParams.length > 0) {
       throw new Error('Invalid customer data')
     }
 
