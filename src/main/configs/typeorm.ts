@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm"
 import * as dotenv from 'dotenv'
 import { TypeOrmModuleOptions } from "@nestjs/typeorm"
+import { CustomerModel } from "@/infra/database/pg/models/customer.model"
 
 dotenv.config()
 
@@ -11,9 +12,8 @@ export const typeormConfig: TypeOrmModuleOptions = {
   username: process.env.R_DB_USERNAME || 'postgres',
   password: process.env.R_DB_PASSWORD || 'postgres',
   database: process.env.R_DB_DATABASE || 'postgres',
-  entities: [],
-  migrations: ['./src/infra/database/pg/migrations/*.ts']
+  entities: [CustomerModel],
+  migrations: ['./dist/infra/database/pg/migrations/*.js']
 }
 
 export default new DataSource(typeormConfig as any)
-
