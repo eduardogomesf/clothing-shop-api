@@ -1,7 +1,9 @@
 import { Customer } from "@/domain/entities/customer";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity()
+@Entity({
+  name: 'customers'
+})
 export class CustomerModel implements Customer {
   @PrimaryGeneratedColumn('uuid')
   id: string;
