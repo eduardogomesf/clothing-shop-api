@@ -1,12 +1,12 @@
 import { Controller, HttpCode, Post, BadRequestException, InternalServerErrorException, Body } from "@nestjs/common";
-import { CreateCustomerUseCase } from "@/domain/use-cases/customer/create-customer.use-case";
 import { MissingParamsException } from "@/application/exceptions/missing-params.exception";
 import { CreateCustomerDto } from "../../dto/create-customer.dto";
+import { ImpCreateCustomerUseCase } from "../../../application/use-cases/customer/imp-create-customer.use-case";
 
 @Controller('')
 export class CreateCustomerController {
   constructor(
-    private readonly createCustomerUseCase: CreateCustomerUseCase
+    private readonly createCustomerUseCase: ImpCreateCustomerUseCase
   ) {}
 
   @HttpCode(201)
