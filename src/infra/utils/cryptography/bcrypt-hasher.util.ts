@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 import { Hasher } from "@/application/protocols/utils/cryptography/hasher.util";
 
 export class BcryptHasher implements Hasher {
