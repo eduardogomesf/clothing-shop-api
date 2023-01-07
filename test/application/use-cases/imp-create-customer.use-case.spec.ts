@@ -4,7 +4,7 @@ import { Hasher } from "@/application/protocols/utils/cryptography/hasher.util"
 import { ImpCreateCustomerUseCase } from "../../../src/application/use-cases/customer/imp-create-customer.use-case"
 import { InformationAlreadyInUseException, MissingParamsException } from "../../../src/application/exceptions"
 import { GetCustomerByEmailRepository } from "@/application/protocols/database/repositories/customer/get-customer-by-email.repository"
-import { HasherStub } from "../mocks/utils/cryptography/hasher.util.mock"
+import { HasherStub } from "../mocks/utils/cryptography"
 import { CreateCustomerRepositoryStub } from "../mocks/databases/repositories/create-customer.repository.mock"
 import { GetCustomerByEmailRepositoryStub } from "../mocks/databases/repositories/get-customer-by-email.repository.mock"
 
