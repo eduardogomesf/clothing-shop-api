@@ -1,6 +1,6 @@
 import { CustomerAddress } from "../../entities/customer";
 
-type AddCustomerAddressUseCaseDTO = {
+export type AddCustomerAddressUseCaseDTO = {
   street: string
   number: number
   neighborhood: string
@@ -12,5 +12,5 @@ type AddCustomerAddressUseCaseDTO = {
 }
 
 export interface AddCustomerAddressUseCase {
-  add: (address: AddCustomerAddressUseCaseDTO) => Promise<CustomerAddress>
+  add: (address: AddCustomerAddressUseCaseDTO, customerId: string) => Promise<CustomerAddress>
 }

@@ -8,7 +8,8 @@ export interface CustomerAddress {
   country: string
   postalCode: string
   complement?: string
-  customerAddressId: string
+  isMain: boolean
+  customerId: string
 }
 
 export interface Customer {
