@@ -4,9 +4,13 @@ import { CreateCustomerController } from '@/presentation/controllers/customers/c
 import { PgCustomerRepository } from '@/infra/database/pg/repositories/pg-customer.repository';
 import { BcryptHasher } from '@/infra/utils/cryptography/bcrypt-hasher.util';
 import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer';
-import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography/';
 import { CustomerModel } from '@/infra/database/pg/models/customer.model';
+import { JwtAdapter } from '@/infra/utils/cryptography';
+import { AuthenticateCustomerController } from '@/presentation/controllers/customers/authenticate-customer.controller';
+import { ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer/imp-authenticate-customer.use-case';
+import { ENVS } from '../configs/envs';
 
 @Module({
   imports: [
@@ -26,10 +30,24 @@ import { CustomerModel } from '@/infra/database/pg/models/customer.model';
         return new ImpCreateCustomerUseCase(createCustomerRepository, hasher, getCustomerByEmailRepository)
       },
       inject: [PgCustomerRepository, BcryptHasher, PgCustomerRepository]
+    },
+    {
+      provide: JwtAdapter,
+      useFactory: () => {
+        return new JwtAdapter('3d', ENVS.SECRETS.JWT_SECRET)
+      }
+    },
+    {
+      provide: ImpAuthenticateCustomerUseCase,
+      useFactory: (getCustomerByEmailRepository: GetCustomerByEmailRepository, hashComparer: HashComparer, encrypter: Encrypter) => {
+        return new ImpAuthenticateCustomerUseCase(getCustomerByEmailRepository, hashComparer, encrypter)
+      },
+      inject: [PgCustomerRepository, BcryptHasher, JwtAdapter]
     }
   ],
   controllers: [
-    CreateCustomerController
+    CreateCustomerController,
+    AuthenticateCustomerController
   ]
 })
 export class CustomerModule {}
