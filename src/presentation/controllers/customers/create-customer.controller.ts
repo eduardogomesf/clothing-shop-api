@@ -1,5 +1,5 @@
-import { Controller, HttpCode, Post, BadRequestException, InternalServerErrorException, Body } from "@nestjs/common";
-import { MissingParamsException } from "@/application/exceptions/missing-params.exception";
+import { Controller, HttpCode, Post, BadRequestException, InternalServerErrorException, Body, UnprocessableEntityException } from "@nestjs/common";
+import { MissingParamsException, InformationAlreadyInUseException } from "@/application/exceptions";
 import { CreateCustomerDto } from "../../dto/create-customer.dto";
 import { ImpCreateCustomerUseCase } from "../../../application/use-cases/customer/imp-create-customer.use-case";
 
@@ -18,6 +18,12 @@ export class CreateCustomerController {
       if (error instanceof MissingParamsException) {
         throw new BadRequestException({
           missingParams: error.missingParams,
+          message: error.message
+        })
+      }
+
+      if (error instanceof InformationAlreadyInUseException) {
+        throw new UnprocessableEntityException({
           message: error.message
         })
       }

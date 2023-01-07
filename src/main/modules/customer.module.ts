@@ -3,7 +3,7 @@ import { ImpCreateCustomerUseCase } from '@/application/use-cases/customer/imp-c
 import { CreateCustomerController } from '@/presentation/controllers/customers/create-customer.controller';
 import { PgCustomerRepository } from '@/infra/database/pg/repositories/pg-customer.repository';
 import { BcryptHasher } from '@/infra/utils/cryptography/bcrypt-hasher.util';
-import { CreateCustomerRepository } from '@/application/protocols/database/repositories/customer/create-customer.repository';
+import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer';
 import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerModel } from '@/infra/database/pg/models/customer.model';
@@ -22,10 +22,10 @@ import { CustomerModel } from '@/infra/database/pg/models/customer.model';
     },
     {
       provide: ImpCreateCustomerUseCase,
-      useFactory: (createCustomerRepository: CreateCustomerRepository, hasher: Hasher) => {
-        return new ImpCreateCustomerUseCase(createCustomerRepository, hasher)
+      useFactory: (createCustomerRepository: CreateCustomerRepository, hasher: Hasher, getCustomerByEmailRepository: GetCustomerByEmailRepository) => {
+        return new ImpCreateCustomerUseCase(createCustomerRepository, hasher, getCustomerByEmailRepository)
       },
-      inject: [PgCustomerRepository, BcryptHasher]
+      inject: [PgCustomerRepository, BcryptHasher, PgCustomerRepository]
     }
   ],
   controllers: [
