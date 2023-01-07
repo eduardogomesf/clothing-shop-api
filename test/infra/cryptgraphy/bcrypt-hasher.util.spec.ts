@@ -1,13 +1,11 @@
 import { Hasher } from "@/application/protocols/utils/cryptography/hasher.util"
-import bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 import { BcryptHasher } from "../../../src/infra/utils/cryptography/bcrypt-hasher.util"
 
 jest.mock('bcrypt', () => {
   return {
-    default: {
-      hash: () => {
-        return Promise.resolve('hashed-value' as never)
-      }
+    hash: () => {
+      return Promise.resolve('hashed-value' as never)
     }
   }
 })
