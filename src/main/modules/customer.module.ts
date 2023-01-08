@@ -2,14 +2,12 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase, ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer'
 import { AuthenticateCustomerController, AddCustomerAddressController, CreateCustomerController } from '@/presentation/controllers/customers'
-import { PgCustomerRepository } from '@/infra/database/pg/repositories/pg-customer.repository'
+import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/repositories'
 import { BcryptAdapter, JwtAdapter } from '@/infra/utils/cryptography'
 import { CreateCustomerAddressRepository, CreateCustomerRepository, GetCustomerByEmailRepository, GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
 import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography/'
-import { CustomerModel } from '@/infra/database/pg/models/customer.model'
-import { ENVS } from '../configs/envs'
-import { CustomerAddressModel } from '@/infra/database/pg/models/customer-address.model'
-import { PgCustomerAddressRepository } from '../../infra/database/pg/repositories/pg-customer-address.repository'
+import { CustomerModel, CustomerAddressModel } from '@/infra/database/pg/models'
+import { ENVS } from '../configs'
 
 @Module({
   imports: [

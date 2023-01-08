@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core'
-import { ENVS } from './configs/envs'
+import { ENVS } from './configs'
 import { AppModule } from './modules/app.module'
 
 async function bootstrap () {
