@@ -1,22 +1,23 @@
 import { Module } from '@nestjs/common'
-import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer'
-import { CreateCustomerController } from '@/presentation/controllers/customers/create-customer.controller'
-import { PgCustomerRepository } from '@/infra/database/pg/repositories/pg-customer.repository'
-import { BcryptAdapter } from '@/infra/utils/cryptography/bcrypt-adapter.util'
-import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase, ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer'
+import { AuthenticateCustomerController, AddCustomerAddressController, CreateCustomerController } from '@/presentation/controllers/customers'
+import { PgCustomerRepository } from '@/infra/database/pg/repositories/pg-customer.repository'
+import { BcryptAdapter, JwtAdapter } from '@/infra/utils/cryptography'
+import { CreateCustomerAddressRepository, CreateCustomerRepository, GetCustomerByEmailRepository, GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
 import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography/'
 import { CustomerModel } from '@/infra/database/pg/models/customer.model'
-import { JwtAdapter } from '@/infra/utils/cryptography'
-import { AuthenticateCustomerController } from '@/presentation/controllers/customers/authenticate-customer.controller'
 import { ENVS } from '../configs/envs'
+import { CustomerAddressModel } from '@/infra/database/pg/models/customer-address.model'
+import { PgCustomerAddressRepository } from '../../infra/database/pg/repositories/pg-customer-address.repository'
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([CustomerModel])
+    TypeOrmModule.forFeature([CustomerModel, CustomerAddressModel])
   ],
   providers: [
     PgCustomerRepository,
+    PgCustomerAddressRepository,
     {
       provide: BcryptAdapter,
       useFactory: () => {
@@ -33,6 +34,7 @@ import { ENVS } from '../configs/envs'
     {
       provide: JwtAdapter,
       useFactory: () => {
+        console.log('teste', ENVS.SECRETS.JWT_SECRET)
         return new JwtAdapter('3d', ENVS.SECRETS.JWT_SECRET)
       }
     },
@@ -42,11 +44,19 @@ import { ENVS } from '../configs/envs'
         return new ImpAuthenticateCustomerUseCase(getCustomerByEmailRepository, hashComparer, encrypter)
       },
       inject: [PgCustomerRepository, BcryptAdapter, JwtAdapter]
+    },
+    {
+      provide: ImpAddCustomerAddressUseCase,
+      useFactory: (getCustomerByIdRepository: GetCustomerByIdRepository, createCustomerAddressRepository: CreateCustomerAddressRepository) => {
+        return new ImpAddCustomerAddressUseCase(getCustomerByIdRepository, createCustomerAddressRepository)
+      },
+      inject: [PgCustomerRepository, PgCustomerAddressRepository]
     }
   ],
   controllers: [
     CreateCustomerController,
-    AuthenticateCustomerController
+    AuthenticateCustomerController,
+    AddCustomerAddressController
   ]
 })
 export class CustomerModule {}

@@ -28,8 +28,8 @@ export class ImpAddCustomerAddressUseCase implements AddCustomerAddressUseCase {
 
     const addressToAdd = {
       ...addressData,
-      isMain: false,
-      customerId
+      customerId,
+      isMain: false
     }
 
     return await this.createCustomerAddressRepository.create(addressToAdd)
