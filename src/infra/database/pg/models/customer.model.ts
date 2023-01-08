@@ -1,5 +1,6 @@
 import { Customer } from '@/domain/entities'
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { CustomerAddressModel } from './customer-address.model'
 
 @Entity({
   name: 'customers'
@@ -31,4 +32,7 @@ export class CustomerModel implements Customer {
     name: 'updated_at'
   })
   updatedAt: string
+
+  @OneToMany(() => CustomerAddressModel, (address) => address.customer)
+  addresses: CustomerAddressModel[]
 }
