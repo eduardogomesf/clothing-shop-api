@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common'
 import { MissingParamsException, NotFoundException } from '@/application/exceptions'
 import { ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer'
-import { AddCustomerAddressDTO } from '../../dto/add-customer-address.dto'
+import { AddCustomerAddressDTO } from '../../dto'
 
 @Controller('')
 export class AddCustomerAddressController {

@@ -1,6 +1,7 @@
-import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer'
-import { CustomerAddress } from '@/domain/entities/customer'
-import { CreateCustomerAddressRepository, GetCustomerByIdRepository } from '../../protocols/database/repositories/customer'
+import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer-address'
+import { CustomerAddress } from '@/domain/entities/'
+import { GetCustomerByIdRepository } from '../../protocols/database/repositories/customer'
+import { CreateCustomerAddressRepository } from '../../protocols/database/repositories/customer-address'
 import { MissingParamsException, NotFoundException } from '../../exceptions'
 import { PayloadValidator } from '../../helpers'
 

@@ -1,7 +1,7 @@
 import { Controller, HttpCode, Post, InternalServerErrorException, Body, UnauthorizedException } from '@nestjs/common'
 import { NotFoundException } from '@/application/exceptions'
 import { ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer'
-import { AuthenticateCustomerDto } from '../../dto/authenticate-customer.dto'
+import { AuthenticateCustomerDto } from '../../dto'
 
 @Controller('')
 export class AuthenticateCustomerController {

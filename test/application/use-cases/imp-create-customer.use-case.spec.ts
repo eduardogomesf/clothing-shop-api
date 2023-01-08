@@ -1,12 +1,11 @@
-import { CreateCustomerUseCase } from "@/domain/use-cases/customer/create-customer.use-case"
-import { CreateCustomerRepository } from "@/application/protocols/database/repositories/customer/create-customer.repository"
-import { Hasher } from "@/application/protocols/utils/cryptography/hasher.util"
-import { ImpCreateCustomerUseCase } from "../../../src/application/use-cases/customer/imp-create-customer.use-case"
-import { InformationAlreadyInUseException, MissingParamsException } from "../../../src/application/exceptions"
-import { GetCustomerByEmailRepository } from "@/application/protocols/database/repositories/customer/get-customer-by-email.repository"
-import { HasherStub } from "../mocks/utils/cryptography"
-import { CreateCustomerRepositoryStub } from "../mocks/databases/repositories/create-customer.repository.mock"
-import { GetCustomerByEmailRepositoryStub } from "../mocks/databases/repositories/get-customer-by-email.repository.mock"
+import { CreateCustomerUseCase } from '@/domain/use-cases/customer/create-customer.use-case'
+import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
+import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util'
+import { ImpCreateCustomerUseCase } from '../../../src/application/use-cases/customer'
+import { InformationAlreadyInUseException, MissingParamsException } from '../../../src/application/exceptions'
+import { HasherStub } from '../mocks/utils/cryptography'
+import { CreateCustomerRepositoryStub } from '../mocks/databases/repositories/create-customer.repository.mock'
+import { GetCustomerByEmailRepositoryStub } from '../mocks/databases/repositories/get-customer-by-email.repository.mock'
 
 describe('CreateCustomerUseCase', () => {
   let hasher: Hasher
@@ -59,7 +58,7 @@ describe('CreateCustomerUseCase', () => {
     const promise = createCustomerUseCase.create({
       email: 'tester@tester.com.br',
       name: 'tester master',
-      cellphoneNumber: '11995433245',
+      cellphoneNumber: '11995433245'
     } as any)
 
     await expect(promise).rejects.toThrowError(new MissingParamsException(['password']))
@@ -101,7 +100,6 @@ describe('CreateCustomerUseCase', () => {
       password: 'any-password'
     } as any)
 
-
     expect(getSpy).toHaveBeenCalledWith('tester@tester.com.br')
   })
 
@@ -116,7 +114,6 @@ describe('CreateCustomerUseCase', () => {
       cellphoneNumber: '11995433245',
       password: 'any-password'
     } as any)
-
 
     expect(hashSpy).toHaveBeenCalledWith('any-password')
   })

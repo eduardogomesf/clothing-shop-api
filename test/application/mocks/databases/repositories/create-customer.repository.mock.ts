@@ -1,5 +1,5 @@
-import { CreateCustomerRepository, CreateCustomerRepositoryDto } from "@/application/protocols/database/repositories/customer/create-customer.repository";
-import { Customer } from "@/domain/entities/customer";
+import { CreateCustomerRepository, CreateCustomerRepositoryDto } from '@/application/protocols/database/repositories/customer'
+import { Customer } from '@/domain/entities/customer'
 
 export class CreateCustomerRepositoryStub implements CreateCustomerRepository {
   create (createDto: CreateCustomerRepositoryDto): Promise<Customer> {
@@ -10,8 +10,7 @@ export class CreateCustomerRepositoryStub implements CreateCustomerRepository {
       cellphoneNumber,
       email,
       password,
-      id: 'any-id',
+      id: 'any-id'
     })
   };
-
 }

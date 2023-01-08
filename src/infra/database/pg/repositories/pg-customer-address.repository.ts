@@ -1,4 +1,4 @@
-import { CreateCustomerAddressRepository, CreateCustomerAddressRepositoryDTO } from '@/application/protocols/database/repositories/customer'
+import { CreateCustomerAddressRepository, CreateCustomerAddressRepositoryDTO } from '@/application/protocols/database/repositories/customer-address'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'

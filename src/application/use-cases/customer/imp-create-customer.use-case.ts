@@ -2,11 +2,10 @@ import {
   CreateCustomerUseCase,
   CreateCustomerUseCaseDTO
 } from '@/domain/use-cases/customer'
-import { CreateCustomerRepository } from '@/application/protocols/database/repositories/customer/create-customer.repository'
+import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
 import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util'
 import { PayloadValidator } from '../../helpers/payload-validator.helper'
 import { InformationAlreadyInUseException, MissingParamsException } from '../../exceptions'
-import { GetCustomerByEmailRepository } from '../../protocols/database/repositories/customer/get-customer-by-email.repository'
 
 export class ImpCreateCustomerUseCase implements CreateCustomerUseCase {
   constructor(

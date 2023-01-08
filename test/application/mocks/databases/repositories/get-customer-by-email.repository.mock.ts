@@ -1,8 +1,7 @@
-import { GetCustomerByEmailRepository } from "@/application/protocols/database/repositories/customer/get-customer-by-email.repository";
-import { Customer } from "../../../../../src/domain/entities/customer";
+import { GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
+import { Customer } from '../../../../../src/domain/entities/customer'
 
 export class GetCustomerByEmailRepositoryStub implements GetCustomerByEmailRepository {
-
   get (email: string): Promise<Customer> {
     return Promise.resolve({
       id: 'any-id',
@@ -12,5 +11,4 @@ export class GetCustomerByEmailRepositoryStub implements GetCustomerByEmailRepos
       password: 'any-password'
     })
   };
-
 }
