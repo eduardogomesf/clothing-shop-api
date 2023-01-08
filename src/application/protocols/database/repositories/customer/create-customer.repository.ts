@@ -1,4 +1,4 @@
-import { Customer } from '@/domain/entities/customer'
+import { Customer } from '@/domain/entities'
 
 export interface CreateCustomerRepositoryDto {
   name: string;

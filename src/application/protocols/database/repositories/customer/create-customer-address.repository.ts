@@ -1,4 +1,4 @@
-import { CustomerAddress } from '@/domain/entities/customer'
+import { CustomerAddress } from '@/domain/entities'
 
 export interface CreateCustomerAddressRepositoryDTO {
   street: string
