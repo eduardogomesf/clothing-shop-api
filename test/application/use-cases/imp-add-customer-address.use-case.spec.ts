@@ -1,9 +1,9 @@
-import { MissingParamsException, NotFoundException } from "../../../src/application/exceptions"
-import { CreateCustomerAddressRepository, GetCustomerByIdRepository } from "../../../src/application/protocols/database/repositories/customer"
-import { ImpAddCustomerAddressUseCase } from "../../../src/application/use-cases/customer/imp-add-customer-address.use-case"
-import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from "../../../src/domain/use-cases/customer/add-customer-address.use-case"
-import { CreateCustomerAddressRepositoryStub } from "../mocks/databases/repositories/create-customer-address.repository.mock"
-import { GetCustomerByIdRepositoryStub } from "../mocks/databases/repositories/get-customer-by-id.repository.mock"
+import { MissingParamsException, NotFoundException } from '../../../src/application/exceptions'
+import { CreateCustomerAddressRepository, GetCustomerByIdRepository } from '../../../src/application/protocols/database/repositories/customer'
+import { ImpAddCustomerAddressUseCase } from '../../../src/application/use-cases/customer/imp-add-customer-address.use-case'
+import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '../../../src/domain/use-cases/customer/add-customer-address.use-case'
+import { CreateCustomerAddressRepositoryStub } from '../mocks/databases/repositories/create-customer-address.repository.mock'
+import { GetCustomerByIdRepositoryStub } from '../mocks/databases/repositories/get-customer-by-id.repository.mock'
 
 describe('AddCustomerAddressUseCase', () => {
   let getCustomerByIdRepository: GetCustomerByIdRepository
@@ -39,7 +39,7 @@ describe('AddCustomerAddressUseCase', () => {
       ...createAddressData,
       isMain: false,
       id: 'any-id',
-      customerId: 'any-id',
+      customerId: 'any-id'
     })
   })
 
@@ -50,7 +50,7 @@ describe('AddCustomerAddressUseCase', () => {
   })
 
   it('should not be able to create a new customer address of a non-existing customer', async () => {
-    getCustomerByIdRepository.get = jest.fn().mockResolvedValue(Promise.resolve(null))
+    getCustomerByIdRepository.getById = jest.fn().mockResolvedValue(Promise.resolve(null))
 
     const promise = addCustomerAddressUseCase.add(createAddressData as any, 'any-id')
 
@@ -58,7 +58,7 @@ describe('AddCustomerAddressUseCase', () => {
   })
 
   it('should call GetCustomerByIdRepository.get with correct value', async () => {
-    const getSpy = jest.spyOn(getCustomerByIdRepository, 'get')
+    const getSpy = jest.spyOn(getCustomerByIdRepository, 'getById')
 
     await addCustomerAddressUseCase.add(createAddressData, 'any-id')
 
@@ -78,7 +78,7 @@ describe('AddCustomerAddressUseCase', () => {
   })
 
   it('should pass along any error thrown by GetCustomerByIdRepository.get', async () => {
-    getCustomerByIdRepository.get = jest.fn().mockImplementation(() => {
+    getCustomerByIdRepository.getById = jest.fn().mockImplementation(() => {
       throw new Error('any_error')
     })
 
@@ -96,5 +96,4 @@ describe('AddCustomerAddressUseCase', () => {
 
     await expect(promise).rejects.toThrowError(new Error('any_error'))
   })
-
 })

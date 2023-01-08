@@ -1,8 +1,8 @@
-import { GetCustomerByIdRepository } from "@/application/protocols/database/repositories/customer";
-import { Customer } from "../../../../../src/domain/entities/customer";
+import { GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
+import { Customer } from '../../../../../src/domain/entities/customer'
 
 export class GetCustomerByIdRepositoryStub implements GetCustomerByIdRepository {
-  get (id: string): Promise<Customer> {
+  getById (id: string): Promise<Customer> {
     return Promise.resolve({
       id,
       email: 'any@mail.com',

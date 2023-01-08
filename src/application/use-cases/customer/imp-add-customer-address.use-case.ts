@@ -20,7 +20,7 @@ export class ImpAddCustomerAddressUseCase implements AddCustomerAddressUseCase {
       throw new MissingParamsException(missingParamsValidation.missingParams)
     }
 
-    const customer = await this.getCustomerByIdRepository.get(customerId)
+    const customer = await this.getCustomerByIdRepository.getById(customerId)
 
     if (!customer) {
       throw new NotFoundException('Customer')
