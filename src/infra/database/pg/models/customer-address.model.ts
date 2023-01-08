@@ -1,5 +1,5 @@
 import { CustomerAddress } from '@/domain/entities'
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 import { CustomerModel } from './customer.model'
 
 @Entity({
@@ -36,12 +36,14 @@ export class CustomerAddressModel implements CustomerAddress {
   complement?: string
 
   @Column({
+    name: 'customer_id'
+  })
+  customerId: string
+
+  @Column({
     name: 'is_main'
   })
   isMain: boolean
-
-  @Column()
-  customerId: string
 
   @CreateDateColumn({
     name: 'created_at'
@@ -54,5 +56,6 @@ export class CustomerAddressModel implements CustomerAddress {
   updatedAt: string
 
   @ManyToOne(() => CustomerModel, (customer) => customer.addresses)
+  @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
   customer: CustomerModel
 }
