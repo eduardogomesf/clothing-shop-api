@@ -1,26 +1,26 @@
-import { Customer } from "@/domain/entities/customer";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Customer } from '@/domain/entities/customer'
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({
   name: 'customers'
 })
 export class CustomerModel implements Customer {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: string
 
   @Column()
-  name: string;
+  name: string
 
   @Column({
     name: 'cellphone_number'
   })
-  cellphoneNumber: string;
+  cellphoneNumber: string
 
   @Column('')
-  email: string;
+  email: string
 
   @Column()
-  password: string;
+  password: string
 
   @CreateDateColumn({
     name: 'created_at'

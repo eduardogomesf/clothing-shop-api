@@ -1,8 +1,8 @@
-import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from "@/domain/use-cases/customer/add-customer-address.use-case";
-import { CustomerAddress } from "@/domain/entities/customer";
-import { CreateCustomerAddressRepository, GetCustomerByIdRepository } from "../../protocols/database/repositories/customer";
-import { MissingParamsException, NotFoundException } from "../../exceptions";
-import { PayloadValidator } from "../../helpers";
+import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer/add-customer-address.use-case'
+import { CustomerAddress } from '@/domain/entities/customer'
+import { CreateCustomerAddressRepository, GetCustomerByIdRepository } from '../../protocols/database/repositories/customer'
+import { MissingParamsException, NotFoundException } from '../../exceptions'
+import { PayloadValidator } from '../../helpers'
 
 export class ImpAddCustomerAddressUseCase implements AddCustomerAddressUseCase {
   constructor(
@@ -34,5 +34,4 @@ export class ImpAddCustomerAddressUseCase implements AddCustomerAddressUseCase {
 
     return await this.createCustomerAddressRepository.create(addressToAdd)
   };
-
 }

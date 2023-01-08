@@ -1,7 +1,7 @@
-import { Controller, HttpCode, Post, BadRequestException, InternalServerErrorException, Body, UnprocessableEntityException } from "@nestjs/common";
-import { MissingParamsException, InformationAlreadyInUseException } from "@/application/exceptions";
-import { CreateCustomerDto } from "../../dto/create-customer.dto";
-import { ImpCreateCustomerUseCase } from "../../../application/use-cases/customer/imp-create-customer.use-case";
+import { Controller, HttpCode, Post, BadRequestException, InternalServerErrorException, Body, UnprocessableEntityException } from '@nestjs/common'
+import { MissingParamsException, InformationAlreadyInUseException } from '@/application/exceptions'
+import { CreateCustomerDto } from '../../dto/create-customer.dto'
+import { ImpCreateCustomerUseCase } from '../../../application/use-cases/customer/imp-create-customer.use-case'
 
 @Controller('')
 export class CreateCustomerController {
@@ -31,5 +31,4 @@ export class CreateCustomerController {
       throw new InternalServerErrorException()
     }
   }
-
 }

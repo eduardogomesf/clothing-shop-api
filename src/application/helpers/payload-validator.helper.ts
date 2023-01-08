@@ -1,5 +1,4 @@
 export class PayloadValidator {
-
   static isAnyParamMissing (requiredParams: string[], object: any) {
     const missingParams = []
 
@@ -12,7 +11,7 @@ export class PayloadValidator {
     if (missingParams.length > 0) {
       return {
         error: true,
-        missingParams,
+        missingParams
       }
     }
 
@@ -21,5 +20,4 @@ export class PayloadValidator {
       missingParams: []
     }
   }
-
 }

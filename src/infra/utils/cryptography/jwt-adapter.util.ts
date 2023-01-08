@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken'
-import { Encrypter } from "@/application/protocols/utils/cryptography";
+import { Encrypter } from '@/application/protocols/utils/cryptography'
 
 export class JwtAdapter implements Encrypter {
   constructor(private readonly expirationTime: string, private readonly secret: string) {}
@@ -13,5 +13,4 @@ export class JwtAdapter implements Encrypter {
       }
     )
   };
-
 }

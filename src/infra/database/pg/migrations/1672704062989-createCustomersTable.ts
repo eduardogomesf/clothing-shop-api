@@ -1,9 +1,8 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
 export class createCustomersTable1672704062989 implements MigrationInterface {
-
   public async up (queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
 
     await queryRunner.createTable(
       new Table({
@@ -14,35 +13,35 @@ export class createCustomersTable1672704062989 implements MigrationInterface {
             type: 'varchar',
             isPrimary: true,
             generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'name',
-            type: 'varchar',
+            type: 'varchar'
           },
           {
             name: 'cellphone_number',
-            type: 'varchar',
+            type: 'varchar'
           },
           {
             name: 'email',
             type: 'varchar',
-            isUnique: true,
+            isUnique: true
           },
           {
             name: 'password',
-            type: 'varchar',
+            type: 'varchar'
           },
           {
-            name: "created_at",
-            type: "timestamp",
-            default: "now()",
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()'
           },
           {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
-          },
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()'
+          }
         ]
       })
     )
@@ -53,5 +52,4 @@ export class createCustomersTable1672704062989 implements MigrationInterface {
 
     await queryRunner.query('DROP EXTENSION "uuid-ossp"')
   }
-
 }

@@ -1,4 +1,4 @@
-import { CustomerAddress } from "../../entities/customer";
+import { CustomerAddress } from '../../entities/customer'
 
 export type AddCustomerAddressUseCaseDTO = {
   street: string

@@ -6,5 +6,4 @@ export class MissingParamsException extends Error {
 
     this.missingParams = missingParams
   }
-
 }

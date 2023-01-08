@@ -1,7 +1,7 @@
-import { AuthenticateCustomer, AuthenticateCustomerDto, AuthenticateCustomerResponse } from "@/domain/use-cases/customer";
-import { NotFoundException } from "../../exceptions/not-found.exception";
-import { GetCustomerByEmailRepository } from "../../protocols/database/repositories/customer";
-import { HashComparer, Encrypter } from "../../protocols/utils/cryptography";
+import { AuthenticateCustomer, AuthenticateCustomerDto, AuthenticateCustomerResponse } from '@/domain/use-cases/customer'
+import { NotFoundException } from '../../exceptions/not-found.exception'
+import { GetCustomerByEmailRepository } from '../../protocols/database/repositories/customer'
+import { HashComparer, Encrypter } from '../../protocols/utils/cryptography'
 
 export class ImpAuthenticateCustomerUseCase implements AuthenticateCustomer {
   constructor(

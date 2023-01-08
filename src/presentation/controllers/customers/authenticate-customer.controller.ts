@@ -1,7 +1,7 @@
-import { Controller, HttpCode, Post, InternalServerErrorException, Body, UnauthorizedException } from "@nestjs/common";
-import { NotFoundException } from "@/application/exceptions";
-import { ImpAuthenticateCustomerUseCase } from "@/application/use-cases/customer/imp-authenticate-customer.use-case";
-import { AuthenticateCustomerDto } from "../../dto/authenticate-customer.dto";
+import { Controller, HttpCode, Post, InternalServerErrorException, Body, UnauthorizedException } from '@nestjs/common'
+import { NotFoundException } from '@/application/exceptions'
+import { ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer/imp-authenticate-customer.use-case'
+import { AuthenticateCustomerDto } from '../../dto/authenticate-customer.dto'
 
 @Controller('')
 export class AuthenticateCustomerController {
@@ -24,5 +24,4 @@ export class AuthenticateCustomerController {
       throw new InternalServerErrorException()
     }
   }
-
 }

@@ -1,13 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from "typeorm";
-import { Customer } from "@/domain/entities/customer";
-import { CreateCustomerRepository, CreateCustomerRepositoryDto, GetCustomerByEmailRepository } from "@/application/protocols/database/repositories/customer";
-import { CustomerModel } from "../models/customer.model";
+import { Repository } from 'typeorm'
+import { Customer } from '@/domain/entities/customer'
+import { CreateCustomerRepository, CreateCustomerRepositoryDto, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
+import { CustomerModel } from '../models/customer.model'
 
 @Injectable()
 export class PgCustomerRepository implements CreateCustomerRepository, GetCustomerByEmailRepository {
-
   constructor(
     @InjectRepository(CustomerModel)
     private readonly repository: Repository<CustomerModel>
@@ -22,5 +21,4 @@ export class PgCustomerRepository implements CreateCustomerRepository, GetCustom
   async get (email: string): Promise<Customer> {
     return await this.repository.findOneBy({ email })
   }
-
 }

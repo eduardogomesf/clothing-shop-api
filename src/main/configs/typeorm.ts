@@ -1,7 +1,7 @@
-import { DataSource } from "typeorm"
+import { DataSource } from 'typeorm'
 import * as dotenv from 'dotenv'
-import { TypeOrmModuleOptions } from "@nestjs/typeorm"
-import { CustomerModel } from "@/infra/database/pg/models/customer.model"
+import { TypeOrmModuleOptions } from '@nestjs/typeorm'
+import { CustomerModel } from '@/infra/database/pg/models/customer.model'
 
 dotenv.config()
 
