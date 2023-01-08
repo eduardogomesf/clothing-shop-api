@@ -8,13 +8,23 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 12,
     "sourceType": "module"
   },
   "plugins": [
     "@typescript-eslint"
   ],
   "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "ignoredNodes": [
+          "PropertyDefinition"
+        ]
+      }
+    ],
+    "space-before-function-paren": "off",
     "no-useless-constructor": "off"
   }
 }
