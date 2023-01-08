@@ -1,7 +1,7 @@
 import {
   CreateCustomerUseCase,
   CreateCustomerUseCaseDTO
-} from '@/domain/use-cases/customer/create-customer.use-case'
+} from '@/domain/use-cases/customer'
 import { CreateCustomerRepository } from '@/application/protocols/database/repositories/customer/create-customer.repository'
 import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util'
 import { PayloadValidator } from '../../helpers/payload-validator.helper'

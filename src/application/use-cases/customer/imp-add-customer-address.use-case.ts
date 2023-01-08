@@ -1,4 +1,4 @@
-import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer/add-customer-address.use-case'
+import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer'
 import { CustomerAddress } from '@/domain/entities/customer'
 import { CreateCustomerAddressRepository, GetCustomerByIdRepository } from '../../protocols/database/repositories/customer'
 import { MissingParamsException, NotFoundException } from '../../exceptions'
