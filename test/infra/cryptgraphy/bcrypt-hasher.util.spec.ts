@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt'
-import { BcryptHasher } from "../../../src/infra/utils/cryptography/bcrypt-hasher.util"
+import { BcryptAdapter } from '../../../src/infra/utils/cryptography/bcrypt-adapter.util'
 
 jest.mock('bcrypt', () => {
   return {
@@ -13,21 +13,21 @@ jest.mock('bcrypt', () => {
 })
 
 describe('Bcrypt Hasher', () => {
-  let bcryptHasher: BcryptHasher
+  let bcryptAdapter: BcryptAdapter
 
   beforeEach(() => {
-    bcryptHasher = new BcryptHasher(8)
+    bcryptAdapter = new BcryptAdapter(8)
   })
 
   describe('hash', () => {
     it('should return a hashed string', async () => {
-      const result = await bcryptHasher.hash('any-value')
+      const result = await bcryptAdapter.hash('any-value')
       expect(result).toBe('hashed-value')
     })
 
     it('should call Bcrypt.hash with correct values', async () => {
       const hashSpy = jest.spyOn(bcrypt, 'hash')
-      await bcryptHasher.hash('any-value')
+      await bcryptAdapter.hash('any-value')
       expect(hashSpy).toHaveBeenCalledWith('any-value', 8)
     })
 
@@ -35,20 +35,20 @@ describe('Bcrypt Hasher', () => {
       jest.spyOn(bcrypt, 'hash').mockImplementationOnce(() => {
         throw new Error('any-error')
       })
-      const promise = bcryptHasher.hash('any-value')
+      const promise = bcryptAdapter.hash('any-value')
       await expect(promise).rejects.toThrowError(new Error('any-error'))
     })
   })
 
   describe('compare', () => {
     it('should return the result of the comparison', async () => {
-      const result = await bcryptHasher.compare('hashed-value', 'value')
+      const result = await bcryptAdapter.compare('hashed-value', 'value')
       expect(result).toBe(true)
     })
 
     it('should call Bcrypt.compare with correct values', async () => {
       const compareSpy = jest.spyOn(bcrypt, 'compare')
-      await bcryptHasher.compare('hashed-value', 'value')
+      await bcryptAdapter.compare('hashed-value', 'value')
       expect(compareSpy).toBeCalledWith('value', 'hashed-value')
     })
 
@@ -56,7 +56,7 @@ describe('Bcrypt Hasher', () => {
       jest.spyOn(bcrypt, 'compare').mockImplementationOnce(() => {
         throw new Error('any-error')
       })
-      const promise = bcryptHasher.compare('hashed-value', 'value')
+      const promise = bcryptAdapter.compare('hashed-value', 'value')
       await expect(promise).rejects.toThrowError(new Error('any-error'))
     })
   })

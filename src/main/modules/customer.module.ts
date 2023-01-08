@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer'
 import { CreateCustomerController } from '@/presentation/controllers/customers/create-customer.controller'
 import { PgCustomerRepository } from '@/infra/database/pg/repositories/pg-customer.repository'
-import { BcryptHasher } from '@/infra/utils/cryptography/bcrypt-hasher.util'
+import { BcryptAdapter } from '@/infra/utils/cryptography/bcrypt-adapter.util'
 import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography/'
@@ -18,9 +18,9 @@ import { ENVS } from '../configs/envs'
   providers: [
     PgCustomerRepository,
     {
-      provide: BcryptHasher,
+      provide: BcryptAdapter,
       useFactory: () => {
-        return new BcryptHasher(8)
+        return new BcryptAdapter(8)
       }
     },
     {
@@ -28,7 +28,7 @@ import { ENVS } from '../configs/envs'
       useFactory: (createCustomerRepository: CreateCustomerRepository, hasher: Hasher, getCustomerByEmailRepository: GetCustomerByEmailRepository) => {
         return new ImpCreateCustomerUseCase(createCustomerRepository, hasher, getCustomerByEmailRepository)
       },
-      inject: [PgCustomerRepository, BcryptHasher, PgCustomerRepository]
+      inject: [PgCustomerRepository, BcryptAdapter, PgCustomerRepository]
     },
     {
       provide: JwtAdapter,
@@ -41,7 +41,7 @@ import { ENVS } from '../configs/envs'
       useFactory: (getCustomerByEmailRepository: GetCustomerByEmailRepository, hashComparer: HashComparer, encrypter: Encrypter) => {
         return new ImpAuthenticateCustomerUseCase(getCustomerByEmailRepository, hashComparer, encrypter)
       },
-      inject: [PgCustomerRepository, BcryptHasher, JwtAdapter]
+      inject: [PgCustomerRepository, BcryptAdapter, JwtAdapter]
     }
   ],
   controllers: [
