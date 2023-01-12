@@ -9,7 +9,7 @@ import {
   NotFoundException as HttpNotFoundException
 } from '@nestjs/common'
 import { MissingParamsException, NotFoundException } from '@/application/exceptions'
-import { ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer'
+import { ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer-address'
 import { AddCustomerAddressDTO } from '../../dto'
 
 @Controller('')

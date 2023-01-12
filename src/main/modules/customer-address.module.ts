@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer'
-import { AddCustomerAddressController } from '@/presentation/controllers/customers'
+import { ImpAddCustomerAddressUseCase, ImpGetCustomerAddressesUseCase } from '@/application/use-cases/customer-address'
+import { AddCustomerAddressController, GetCustomerAddressesController } from '@/presentation/controllers/customer-address'
 import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/repositories'
 import { GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
-import { CreateCustomerAddressRepository } from '@/application/protocols/database/repositories/customer-address'
+import { CreateCustomerAddressRepository, GetCustomerAddressesRepository } from '@/application/protocols/database/repositories/customer-address'
 import { CustomerModel, CustomerAddressModel } from '@/infra/database/pg/models'
 
 @Module({
@@ -20,10 +20,18 @@ import { CustomerModel, CustomerAddressModel } from '@/infra/database/pg/models'
         return new ImpAddCustomerAddressUseCase(getCustomerByIdRepository, createCustomerAddressRepository)
       },
       inject: [PgCustomerRepository, PgCustomerAddressRepository]
+    },
+    {
+      provide: ImpGetCustomerAddressesUseCase,
+      useFactory: (getCustomerAddressesRepository: GetCustomerAddressesRepository) => {
+        return new ImpGetCustomerAddressesUseCase(getCustomerAddressesRepository)
+      },
+      inject: [PgCustomerAddressRepository]
     }
   ],
   controllers: [
-    AddCustomerAddressController
+    AddCustomerAddressController,
+    GetCustomerAddressesController
   ]
 })
 export class CustomerAddressModule {}
