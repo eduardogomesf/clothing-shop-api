@@ -1,10 +1,10 @@
-import { MissingParamsException, NotFoundException } from '../../../src/application/exceptions'
-import { CreateCustomerAddressRepository } from '../../../src/application/protocols/database/repositories/customer-address'
-import { GetCustomerByIdRepository } from '../../../src/application/protocols/database/repositories/customer'
-import { ImpAddCustomerAddressUseCase } from '../../../src/application/use-cases/customer-address'
-import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '../../../src/domain/use-cases/customer-address'
-import { CreateCustomerAddressRepositoryStub } from '../mocks/databases/repositories/create-customer-address.repository.mock'
-import { GetCustomerByIdRepositoryStub } from '../mocks/databases/repositories/get-customer-by-id.repository.mock'
+import { MissingParamsException, NotFoundException } from '../../../../src/application/exceptions'
+import { GetCustomerByIdRepository } from '../../../../src/application/protocols/database/repositories/customer'
+import { CreateCustomerAddressRepository } from '../../../../src/application/protocols/database/repositories/customer-address'
+import { ImpAddCustomerAddressUseCase } from '../../../../src/application/use-cases/customer'
+import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '../../../../src/domain/use-cases/customer-address'
+import { CreateCustomerAddressRepositoryStub } from '../../mocks/databases/customer-address.repository.mock'
+import { GetCustomerByIdRepositoryStub } from '../../mocks/databases/customer.repository.mock'
 
 describe('AddCustomerAddressUseCase', () => {
   let getCustomerByIdRepository: GetCustomerByIdRepository

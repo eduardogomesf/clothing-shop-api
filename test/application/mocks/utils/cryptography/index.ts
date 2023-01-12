@@ -1,4 +1,4 @@
-import { Hasher, HashComparer, Encrypter } from "@/application/protocols/utils/cryptography";
+import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography'
 
 export class HasherStub implements Hasher {
   hash (value: string): Promise<string> {

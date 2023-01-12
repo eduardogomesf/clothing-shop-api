@@ -1,5 +1,5 @@
-import { GetCustomerAddressesRepository } from '@/application/protocols/database/repositories/customer-address'
-import { CustomerAddress } from '../../../../../src/domain/entities'
+import { CreateCustomerAddressRepository, CreateCustomerAddressRepositoryDTO, GetCustomerAddressesRepository } from '@/application/protocols/database/repositories/customer-address'
+import { CustomerAddress } from '../../../../src/domain/entities'
 
 export class GetCustomerAddressesRepositoryStub implements GetCustomerAddressesRepository {
   getAllByCustomerId (customerId: string): Promise<CustomerAddress[]> {
@@ -19,4 +19,13 @@ export class GetCustomerAddressesRepositoryStub implements GetCustomerAddressesR
       }
     ])
   }
+}
+
+export class CreateCustomerAddressRepositoryStub implements CreateCustomerAddressRepository {
+  create (createAddress: CreateCustomerAddressRepositoryDTO): Promise<CustomerAddress> {
+    return Promise.resolve({
+      ...createAddress,
+      id: 'any-id'
+    })
+  };
 }

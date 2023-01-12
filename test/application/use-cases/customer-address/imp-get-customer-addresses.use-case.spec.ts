@@ -1,7 +1,7 @@
 import { GetCustomerAddressesRepository } from '../../../../src/application/protocols/database/repositories/customer-address'
 import { ImpGetCustomerAddressesUseCase } from '../../../../src/application/use-cases/customer-address/imp-get-customer-addresses.use-case'
 import { GetCustomerAddressesUseCase } from '../../../../src/domain/use-cases/customer-address'
-import { GetCustomerAddressesRepositoryStub } from '../../mocks/databases/repositories/customer-address.repository.mock'
+import { GetCustomerAddressesRepositoryStub } from '../../mocks/databases/customer-address.repository.mock'
 
 describe('GetCustomerAddressesUseCase', () => {
   let getCustomerAddressesUseCase: GetCustomerAddressesUseCase

@@ -1,9 +1,9 @@
-import { ImpAuthenticateCustomerUseCase } from '../../../src/application/use-cases/customer'
-import { GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
-import { Encrypter, HashComparer } from '@/application/protocols/utils/cryptography'
-import { GetCustomerByEmailRepositoryStub } from '../mocks/databases/repositories/get-customer-by-email.repository.mock'
-import { EncrypterStub, HashComparerStub } from '../mocks/utils/cryptography'
-import { NotFoundException } from '../../../src/application/exceptions/not-found.exception'
+import { NotFoundException } from '../../../../src/application/exceptions'
+import { GetCustomerByEmailRepository } from '../../../../src/application/protocols/database/repositories/customer'
+import { HashComparer, Encrypter } from '../../../../src/application/protocols/utils/cryptography'
+import { ImpAuthenticateCustomerUseCase } from '../../../../src/application/use-cases/customer'
+import { GetCustomerByEmailRepositoryStub } from '../../mocks/databases/customer.repository.mock'
+import { HashComparerStub, EncrypterStub } from '../../mocks/utils/cryptography'
 
 describe('AuthenticateCustomerUseCase', () => {
   let authenticateCustomerUseCase: ImpAuthenticateCustomerUseCase

@@ -1,11 +1,10 @@
 import { CreateCustomerUseCase } from '@/domain/use-cases/customer/create-customer.use-case'
 import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
 import { Hasher } from '@/application/protocols/utils/cryptography/hasher.util'
-import { ImpCreateCustomerUseCase } from '../../../src/application/use-cases/customer'
-import { InformationAlreadyInUseException, MissingParamsException } from '../../../src/application/exceptions'
-import { HasherStub } from '../mocks/utils/cryptography'
-import { CreateCustomerRepositoryStub } from '../mocks/databases/repositories/create-customer.repository.mock'
-import { GetCustomerByEmailRepositoryStub } from '../mocks/databases/repositories/get-customer-by-email.repository.mock'
+import { ImpCreateCustomerUseCase } from '../../../../src/application/use-cases/customer'
+import { InformationAlreadyInUseException, MissingParamsException } from '../../../../src/application/exceptions'
+import { HasherStub } from '../../mocks/utils/cryptography'
+import { CreateCustomerRepositoryStub, GetCustomerByEmailRepositoryStub } from '../../mocks/databases/customer.repository.mock'
 
 describe('CreateCustomerUseCase', () => {
   let hasher: Hasher
