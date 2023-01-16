@@ -6,13 +6,16 @@ import {
   InternalServerErrorException,
   Body,
   Param,
-  NotFoundException as HttpNotFoundException
+  NotFoundException as HttpNotFoundException,
+  UseGuards
 } from '@nestjs/common'
 import { MissingParamsException, NotFoundException } from '@/application/exceptions'
 import { ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer-address'
 import { AddCustomerAddressDTO } from '../../dto'
+import { AuthGuard } from '../../guards/auth.guard'
 
 @Controller('')
+@UseGuards(AuthGuard)
 export class AddCustomerAddressController {
   constructor(
     private readonly addCustomerAddressUseCase: ImpAddCustomerAddressUseCase

@@ -1,7 +1,9 @@
-import { Controller, Get, InternalServerErrorException, Param } from '@nestjs/common'
+import { Controller, Get, InternalServerErrorException, Param, UseGuards } from '@nestjs/common'
 import { ImpGetCustomerAddressesUseCase } from '@/application/use-cases/customer-address'
+import { AuthGuard } from '../../guards/auth.guard'
 
 @Controller('')
+@UseGuards(AuthGuard)
 export class GetCustomerAddressesController {
   constructor(
     private readonly getCustomerAddressesUseCase: ImpGetCustomerAddressesUseCase
