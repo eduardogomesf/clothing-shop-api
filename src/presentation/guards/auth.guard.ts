@@ -3,6 +3,7 @@ import { verify } from 'jsonwebtoken'
 import { Request } from 'express'
 import { Observable } from 'rxjs'
 import { ENVS } from '@/main/configs'
+import { Logger } from '@/shared/utils/logger.util'
 
 type TokenPayload = {
   sub: number
@@ -11,7 +12,11 @@ type TokenPayload = {
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor() {}
+  logSource: string = ''
+
+  constructor() {
+    this.logSource = 'AuthGuard.canActive'
+  }
 
   canActivate (
     context: ExecutionContext
@@ -21,7 +26,7 @@ export class AuthGuard implements CanActivate {
     const bearerToken = request.headers.authorization
 
     if (!bearerToken) {
-      console.error('[AuthGuard.canActive] -> Missing token')
+      Logger.logError(this.logSource, 'Missing token')
       throw new UnauthorizedException()
     }
 
@@ -34,12 +39,12 @@ export class AuthGuard implements CanActivate {
     try {
       payload = verify(token, ENVS.SECRETS.JWT_SECRET) as unknown as TokenPayload
     } catch (err) {
-      console.error('[AuthGuard.canActive] -> Invalid token: ' + err.message)
+      Logger.logError(this.logSource, `Invalid token: ${err.message}`)
       throw new UnauthorizedException()
     }
 
     if (!payload?.id) {
-      console.error('[AuthGuard.canActive] -> Invalid token payload')
+      Logger.logError(this.logSource, 'Invalid token payload')
       throw new UnauthorizedException()
     }
 
