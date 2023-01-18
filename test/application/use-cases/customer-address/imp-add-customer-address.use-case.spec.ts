@@ -1,7 +1,7 @@
 import { MissingParamsException, NotFoundException } from '../../../../src/application/exceptions'
 import { GetCustomerByIdRepository } from '../../../../src/application/protocols/database/repositories/customer'
 import { CreateCustomerAddressRepository } from '../../../../src/application/protocols/database/repositories/customer-address'
-import { ImpAddCustomerAddressUseCase } from '../../../../src/application/use-cases/customer'
+import { ImpAddCustomerAddressUseCase } from '../../../../src/application/use-cases/customer-address'
 import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '../../../../src/domain/use-cases/customer-address'
 import { CreateCustomerAddressRepositoryStub } from '../../mocks/databases/customer-address.repository.mock'
 import { GetCustomerByIdRepositoryStub } from '../../mocks/databases/customer.repository.mock'
