@@ -1,4 +1,12 @@
-import { CreateCustomerAddressRepository, CreateCustomerAddressRepositoryDTO, GetCustomerAddressesRepository } from '@/application/protocols/database/repositories/customer-address'
+import {
+  CreateCustomerAddressRepository,
+  CreateCustomerAddressRepositoryDTO,
+  DeleteOneCustomerAddressRepository,
+  DeleteOneCustomerAddressRepositoryDTO,
+  GetCustomerAddressesRepository,
+  GetOneCustomerAddressRepository,
+  GetOneCustomerAddressRepositoryDTO
+} from '@/application/protocols/database/repositories/customer-address'
 import { CustomerAddress } from '../../../../src/domain/entities'
 
 export class GetCustomerAddressesRepositoryStub implements GetCustomerAddressesRepository {
@@ -28,4 +36,28 @@ export class CreateCustomerAddressRepositoryStub implements CreateCustomerAddres
       id: 'any-id'
     })
   };
+}
+
+export class DeleteOneCustomerAddressRepositoryStub implements DeleteOneCustomerAddressRepository {
+  deleteOne (dto: DeleteOneCustomerAddressRepositoryDTO): Promise<void> {
+    return Promise.resolve(null)
+  }
+}
+
+export class GetOneCustomerAddressRepositoryStub implements GetOneCustomerAddressRepository {
+  getOne (dto: GetOneCustomerAddressRepositoryDTO): Promise<CustomerAddress> {
+    return Promise.resolve({
+      id: 'address-id',
+      street: 'any-street',
+      number: 100,
+      neighborhood: 'any-neighbor',
+      city: 'any-city',
+      state: 'any-state',
+      country: 'Brazil',
+      postalCode: '53230634',
+      complement: 'any-complement',
+      isMain: true,
+      customerId: 'any-customer-id'
+    })
+  }
 }
