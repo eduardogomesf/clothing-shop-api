@@ -19,5 +19,5 @@ export class SubcategoryModel implements Subcategory {
     joinColumn: { name: 'subcategory_id', referencedColumnName: 'id' },
     inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' }
   })
-  categories: CategoryModel[]
+  categories?: CategoryModel[]
 }
