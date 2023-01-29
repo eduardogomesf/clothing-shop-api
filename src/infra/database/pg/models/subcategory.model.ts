@@ -1,8 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm'
+import { Subcategory } from '@/domain/entities/subcategory'
 import { CategoryModel } from './category.model'
 
 @Entity()
-export class SubcategoryModel {
+export class SubcategoryModel implements Subcategory {
   @PrimaryGeneratedColumn()
   id: string
 
