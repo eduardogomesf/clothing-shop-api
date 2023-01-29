@@ -12,6 +12,6 @@ export class PgCategoryRepository implements GetCategoriesWithSubCategoriesRepos
   ) {}
 
   async getAll (): Promise<CategoryModel[]> {
-    return await this.repository.find({ relations: ['subcategories'] })
+    return await this.repository.find()
   }
 }
