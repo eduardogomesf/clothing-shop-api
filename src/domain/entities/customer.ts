@@ -1,4 +1,4 @@
-import { CustomerAddress } from './customer-model'
+import { CustomerAddress } from './customer-address'
 
 export interface Customer {
   id: string;
