@@ -1,6 +1,7 @@
 import { Controller, HttpCode, Post, BadRequestException, InternalServerErrorException, Body, UnprocessableEntityException } from '@nestjs/common'
 import { MissingParamsException, InformationAlreadyInUseException } from '@/application/exceptions'
 import { ImpCreateCustomerUseCase } from '@/application/use-cases/customer'
+import { Logger } from '@/shared/utils/logger.util'
 import { CreateCustomerDto } from '../../dto'
 
 @Controller('')
@@ -15,6 +16,8 @@ export class CreateCustomerController {
     try {
       return await this.createCustomerUseCase.create(body)
     } catch (error) {
+      Logger.logError('CreateCustomerController.execute', error.message)
+
       if (error instanceof MissingParamsException) {
         throw new BadRequestException({
           missingParams: error.missingParams,

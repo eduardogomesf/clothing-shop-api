@@ -1,5 +1,6 @@
 import { Controller, Get, InternalServerErrorException } from '@nestjs/common'
-import { ImpGetCategoriesWithSubCategoriesUseCase } from '../../../application/use-cases/category/'
+import { ImpGetCategoriesWithSubCategoriesUseCase } from '@/application/use-cases/category/'
+import { Logger } from '@/shared/utils/logger.util'
 
 @Controller('')
 export class GetCategoriesWithSubcategoriesController {
@@ -11,8 +12,8 @@ export class GetCategoriesWithSubcategoriesController {
   async execute () {
     try {
       return await this.getCategoriesWithSubcategoriesUseCase.get()
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      Logger.logError('GetCategoriesWithSubcategoriesController.execute', error.message)
       throw new InternalServerErrorException()
     }
   }

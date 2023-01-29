@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common'
 import { MissingParamsException, NotFoundException } from '@/application/exceptions'
 import { ImpAddCustomerAddressUseCase } from '@/application/use-cases/customer-address'
+import { Logger } from '@/shared/utils/logger.util'
 import { AddCustomerAddressDTO } from '../../dto'
 import { AuthGuard } from '../../guards/auth.guard'
 
@@ -27,6 +28,8 @@ export class AddCustomerAddressController {
     try {
       return await this.addCustomerAddressUseCase.add(body, customerId)
     } catch (error) {
+      Logger.logError('AddCustomerAddressController.execute', error.message)
+
       if (error instanceof MissingParamsException) {
         throw new BadRequestException({
           missingParams: error.missingParams,
@@ -39,8 +42,6 @@ export class AddCustomerAddressController {
           message: error.message
         })
       }
-
-      console.log(error)
 
       throw new InternalServerErrorException()
     }
