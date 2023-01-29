@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 't
 import { Category } from '@/domain/entities/category'
 import { SubcategoryModel } from './subcategory.model'
 
-@Entity()
+@Entity('categories')
 export class CategoryModel implements Category {
   @PrimaryGeneratedColumn()
   id: string
@@ -13,7 +13,7 @@ export class CategoryModel implements Category {
   @Column()
   description?: string
 
-  @ManyToMany(type => SubcategoryModel, subcategory => subcategory.categories)
+  @ManyToMany(type => SubcategoryModel, subcategory => subcategory.categories, { eager: true })
   @JoinTable({
     name: 'categories_subcategories',
     joinColumn: { name: 'category_id', referencedColumnName: 'id' },

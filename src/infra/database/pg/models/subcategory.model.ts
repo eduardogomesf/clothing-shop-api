@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 't
 import { Subcategory } from '@/domain/entities/subcategory'
 import { CategoryModel } from './category.model'
 
-@Entity()
+@Entity('subcategories')
 export class SubcategoryModel implements Subcategory {
   @PrimaryGeneratedColumn()
   id: string
