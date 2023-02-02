@@ -7,6 +7,6 @@ export interface ProductVariation {
   productId: string
   color?: string
   size?: string
-  image_url?: string
+  imageUrl?: string
   product?: Product
 }
