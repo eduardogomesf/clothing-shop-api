@@ -1,5 +1,5 @@
 import { Controller, Get, InternalServerErrorException } from '@nestjs/common'
-import { ImpGetCategoriesWithSubCategoriesUseCase } from '@/application/use-cases/category/'
+import { ImpGetCategoriesWithSubCategoriesUseCase } from '@/application/use-cases/category'
 import { Logger } from '@/shared/utils/logger.util'
 
 @Controller('/categories')

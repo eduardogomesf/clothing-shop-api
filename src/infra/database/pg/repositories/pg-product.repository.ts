@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/customer-address/get-all-products-with-filters.repository'
+import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/product'
 import { Product } from '@/domain/entities/product'
 import { ProductModel } from '../models'
 

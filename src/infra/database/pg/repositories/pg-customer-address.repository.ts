@@ -10,11 +10,13 @@ import {
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { CustomerAddress } from '../../../../domain/entities'
+import { CustomerAddress } from '@/domain/entities'
 import { CustomerAddressModel } from '../models/customer-address.model'
 
 @Injectable()
-export class PgCustomerAddressRepository implements CreateCustomerAddressRepository, GetCustomerAddressesRepository, GetOneCustomerAddressRepository, DeleteOneCustomerAddressRepository {
+export class PgCustomerAddressRepository implements
+  CreateCustomerAddressRepository, GetCustomerAddressesRepository,
+  GetOneCustomerAddressRepository, DeleteOneCustomerAddressRepository {
   constructor(
     @InjectRepository(CustomerAddressModel)
     private readonly repository: Repository<CustomerAddressModel>

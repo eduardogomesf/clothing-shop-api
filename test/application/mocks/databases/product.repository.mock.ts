@@ -1,4 +1,4 @@
-import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/customer-address/get-all-products-with-filters.repository'
+import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/product/get-all-products-with-filters.repository'
 import { Product } from '../../../../src/domain/entities/product'
 
 export class ProductRepositoryStub implements GetAllProductsWithFiltersRepository {

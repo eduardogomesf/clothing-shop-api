@@ -1,5 +1,5 @@
 import { Controller, Get, InternalServerErrorException } from '@nestjs/common'
-import { ImpGetProductsUseCase } from '@/application/use-cases/product/imp-get-products.use-case'
+import { ImpGetProductsUseCase } from '@/application/use-cases/product'
 import { Logger } from '@/shared/utils/logger.util'
 
 @Controller('/products')

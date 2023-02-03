@@ -2,7 +2,12 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Customer } from '@/domain/entities/customer'
-import { CreateCustomerRepository, CreateCustomerRepositoryDto, GetCustomerByEmailRepository, GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
+import {
+  CreateCustomerRepository,
+  CreateCustomerRepositoryDto,
+  GetCustomerByEmailRepository,
+  GetCustomerByIdRepository
+} from '@/application/protocols/database/repositories/customer'
 import { CustomerModel } from '../models/customer.model'
 
 @Injectable()

@@ -1,6 +1,6 @@
-import { GetProductsUseCase } from '@/domain/use-cases/product/get-products.use-case'
+import { GetProductsUseCase } from '@/domain/use-cases/product'
 import { Product } from '@/domain/entities/product'
-import { GetAllProductsWithFiltersRepository } from '../../protocols/database/repositories/customer-address/get-all-products-with-filters.repository'
+import { GetAllProductsWithFiltersRepository } from '../../protocols/database/repositories/product/get-all-products-with-filters.repository'
 
 export class ImpGetProductsUseCase implements GetProductsUseCase {
   constructor(

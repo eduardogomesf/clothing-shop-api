@@ -1,6 +1,6 @@
-import { GetCategoriesWithSubCategoriesUseCase } from '@/domain/use-cases/category/get-categories-with-subcategories.use-case'
+import { GetCategoriesWithSubCategoriesUseCase } from '@/domain/use-cases/category'
 import { Category } from '@/domain/entities/category'
-import { GetCategoriesWithSubCategoriesRepository } from '../../protocols/database/repositories/category/get-categories-with-subcategories.repository'
+import { GetCategoriesWithSubCategoriesRepository } from '../../protocols/database/repositories/category'
 
 export class ImpGetCategoriesWithSubCategoriesUseCase implements GetCategoriesWithSubCategoriesUseCase {
   constructor(

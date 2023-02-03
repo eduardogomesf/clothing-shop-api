@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { GetCategoriesWithSubCategoriesRepository } from '@/application/protocols/database/repositories/category/get-categories-with-subcategories.repository'
+import { GetCategoriesWithSubCategoriesRepository } from '@/application/protocols/database/repositories/category'
 import { CategoryModel } from '../models/category.model'
 
 @Injectable()

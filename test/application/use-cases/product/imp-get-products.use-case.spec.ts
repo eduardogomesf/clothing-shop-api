@@ -1,4 +1,4 @@
-import { GetAllProductsWithFiltersRepository } from '../../../../src/application/protocols/database/repositories/customer-address/get-all-products-with-filters.repository'
+import { GetAllProductsWithFiltersRepository } from '../../../../src/application/protocols/database/repositories/product/get-all-products-with-filters.repository'
 import { ImpGetProductsUseCase } from '../../../../src/application/use-cases/product/imp-get-products.use-case'
 import { ProductRepositoryStub } from '../../mocks/databases/product.repository.mock'
 

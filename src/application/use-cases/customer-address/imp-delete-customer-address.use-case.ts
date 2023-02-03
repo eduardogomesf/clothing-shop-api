@@ -1,4 +1,4 @@
-import { DeleteCustomerAddressUseCase, DeleteCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer-address/delete-customer-address.use-case'
+import { DeleteCustomerAddressUseCase, DeleteCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer-address'
 import { NotFoundException } from '../../exceptions'
 import { DeleteOneCustomerAddressRepository, GetOneCustomerAddressRepository } from '../../protocols/database/repositories/customer-address'
 
