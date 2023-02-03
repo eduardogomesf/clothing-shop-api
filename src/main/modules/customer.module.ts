@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer'
-import { AuthenticateCustomerController, CreateCustomerController } from '@/presentation/controllers/customers'
+import { CustomerController } from '@/presentation/controllers'
 import { PgCustomerRepository } from '@/infra/database/pg/repositories'
 import { BcryptAdapter, JwtAdapter } from '@/infra/utils/cryptography'
 import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
@@ -44,8 +44,7 @@ import { ENVS } from '../configs'
     }
   ],
   controllers: [
-    CreateCustomerController,
-    AuthenticateCustomerController
+    CustomerController
   ]
 })
 export class CustomerModule {}

@@ -4,7 +4,7 @@ import { ProductModel, ProductVariationModel } from '@/infra/database/pg/models/
 import { PgProductRepository } from '@/infra/database/pg/repositories'
 import { ImpGetProductsUseCase } from '@/application/use-cases/product'
 import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/customer-address/get-all-products-with-filters.repository'
-import { GetProductsController } from '@/presentation/controllers/product'
+import { ProductController } from '@/presentation/controllers'
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { GetProductsController } from '@/presentation/controllers/product'
     }
   ],
   controllers: [
-    GetProductsController
+    ProductController
   ]
 })
 export class ProductModule {}

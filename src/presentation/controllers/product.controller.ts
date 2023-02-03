@@ -2,18 +2,18 @@ import { Controller, Get, InternalServerErrorException } from '@nestjs/common'
 import { ImpGetProductsUseCase } from '@/application/use-cases/product/imp-get-products.use-case'
 import { Logger } from '@/shared/utils/logger.util'
 
-@Controller('')
-export class GetProductsController {
+@Controller('/products')
+export class ProductController {
   constructor(
     private readonly getProductsUseCase: ImpGetProductsUseCase
   ) {}
 
-  @Get('/products')
-  async execute () {
+  @Get('')
+  async getProducts () {
     try {
       return await this.getProductsUseCase.get()
     } catch (error) {
-      Logger.logError('GetProductsController.execute', error.message)
+      Logger.logError('ProductController.getProducts', error.message)
       throw new InternalServerErrorException()
     }
   }

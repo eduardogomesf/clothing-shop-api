@@ -4,7 +4,7 @@ import { PgCategoryRepository } from '@/infra/database/pg/repositories'
 import { CategoryModel, SubcategoryModel } from '@/infra/database/pg/models/'
 import { ImpGetCategoriesWithSubCategoriesUseCase } from '@/application/use-cases/category'
 import { GetCategoriesWithSubCategoriesRepository } from '@/application/protocols/database/repositories/category/get-categories-with-subcategories.repository'
-import { GetCategoriesWithSubcategoriesController } from '@/presentation/controllers/category/get-category-with-subcategories.controller'
+import { CategoryController } from '@/presentation/controllers'
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { GetCategoriesWithSubcategoriesController } from '@/presentation/control
     }
   ],
   controllers: [
-    GetCategoriesWithSubcategoriesController
+    CategoryController
   ]
 })
 export class CategoryModule {}

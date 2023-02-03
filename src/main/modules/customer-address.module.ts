@@ -5,11 +5,6 @@ import {
   ImpDeleteCustomerAddressUseCase,
   ImpGetCustomerAddressesUseCase
 } from '@/application/use-cases/customer-address'
-import {
-  AddCustomerAddressController,
-  GetCustomerAddressesController,
-  DeleteOneCustomerAddressController
-} from '@/presentation/controllers/customer-address'
 import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/repositories'
 import { GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
 import {
@@ -22,6 +17,7 @@ import {
   CustomerModel,
   CustomerAddressModel
 } from '@/infra/database/pg/models'
+import { CustomerAddressController } from '@/presentation/controllers'
 
 @Module({
   imports: [
@@ -53,9 +49,7 @@ import {
     }
   ],
   controllers: [
-    AddCustomerAddressController,
-    GetCustomerAddressesController,
-    DeleteOneCustomerAddressController
+    CustomerAddressController
   ]
 })
 export class CustomerAddressModule {}
