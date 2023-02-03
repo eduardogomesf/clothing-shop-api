@@ -31,7 +31,6 @@ import { ENVS } from '../configs'
     {
       provide: JwtAdapter,
       useFactory: () => {
-        console.log('teste', ENVS.SECRETS.JWT_SECRET)
         return new JwtAdapter('3d', ENVS.SECRETS.JWT_SECRET)
       }
     },

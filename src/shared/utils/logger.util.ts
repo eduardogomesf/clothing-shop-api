@@ -14,6 +14,6 @@ export class Logger {
   }
 
   public static logError (source: string, customMessage: string) {
-    console.log(`[${source}] -> ${customMessage} | [${Logger.getDateWithTime()}] `)
+    console.error(`[${source}] -> ${customMessage} | [${Logger.getDateWithTime()}] `)
   }
 }
