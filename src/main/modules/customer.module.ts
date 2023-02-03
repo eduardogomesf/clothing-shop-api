@@ -31,7 +31,7 @@ import { ENVS } from '../configs'
     {
       provide: JwtAdapter,
       useFactory: () => {
-        return new JwtAdapter('3d', ENVS.SECRETS.JWT_SECRET)
+        return new JwtAdapter(ENVS.JWT.EXPIRATION_IN_DAYS, ENVS.JWT.SECRET)
       }
     },
     {

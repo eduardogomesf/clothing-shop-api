@@ -6,7 +6,8 @@ export const ENVS = {
   APP: {
     PORT: process.env.APP_PORT || 3000
   },
-  SECRETS: {
-    JWT_SECRET: process.env.JWT_SECRET
+  JWT: {
+    SECRET: process.env.JWT_SECRET,
+    EXPIRATION_IN_DAYS: process.env.EXPIRATION_IN_DAYS || '1d'
   }
-} as const
+}

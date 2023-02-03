@@ -37,7 +37,7 @@ export class AuthGuard implements CanActivate {
     let payload = null
 
     try {
-      payload = verify(token, ENVS.SECRETS.JWT_SECRET) as unknown as TokenPayload
+      payload = verify(token, ENVS.JWT.SECRET) as unknown as TokenPayload
     } catch (err) {
       Logger.logError(this.logSource, `Invalid token: ${err.message}`)
       throw new UnauthorizedException()
