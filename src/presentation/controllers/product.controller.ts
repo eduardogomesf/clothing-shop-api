@@ -13,7 +13,7 @@ export class ProductController {
     try {
       return await this.getProductsUseCase.get()
     } catch (error) {
-      Logger.logError('ProductController.getProducts', error.message)
+      Logger.logError('ProductController.getProducts', error)
       throw new InternalServerErrorException()
     }
   }

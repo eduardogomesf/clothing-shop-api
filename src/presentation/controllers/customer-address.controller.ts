@@ -35,7 +35,7 @@ export class CustomerAddressController {
     try {
       return await this.addCustomerAddressUseCase.add(body, customerId)
     } catch (error) {
-      Logger.logError('CustomerAddressController.createAddress', error.message)
+      Logger.logError('CustomerAddressController.createAddress', error)
 
       if (error instanceof MissingParamsException) {
         throw new BadRequestException({
@@ -63,7 +63,7 @@ export class CustomerAddressController {
     try {
       return await this.deleteCustomerAddressUseCase.deleteOne({ customerId, addressId })
     } catch (error) {
-      Logger.logError('CustomerAddressController.deleteAddress', error.message)
+      Logger.logError('CustomerAddressController.deleteAddress', error)
 
       if (error instanceof NotFoundException) {
         throw new HttpNotFoundException({
@@ -80,7 +80,7 @@ export class CustomerAddressController {
     try {
       return await this.getCustomerAddressesUseCase.getAll(customerId)
     } catch (error) {
-      Logger.logError('CustomerAddressController.getAll', error.message)
+      Logger.logError('CustomerAddressController.getAll', error)
       throw new InternalServerErrorException()
     }
   }

@@ -13,7 +13,7 @@ export class CategoryController {
     try {
       return await this.getCategoriesWithSubcategoriesUseCase.get()
     } catch (error) {
-      Logger.logError('CategoryController.getCategories', error.message)
+      Logger.logError('CategoryController.getCategories', error)
       throw new InternalServerErrorException()
     }
   }

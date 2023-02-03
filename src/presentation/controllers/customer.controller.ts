@@ -25,7 +25,7 @@ export class CustomerController {
     try {
       return await this.createCustomerUseCase.create(body)
     } catch (error) {
-      Logger.logError('CustomerController.create', error.message)
+      Logger.logError('CustomerController.create', error)
 
       if (error instanceof MissingParamsException) {
         throw new BadRequestException({
@@ -50,7 +50,7 @@ export class CustomerController {
     try {
       return await this.authenticateCustomerUseCase.auth(body)
     } catch (error) {
-      Logger.logError('CustomerController.authenticate', error.message)
+      Logger.logError('CustomerController.authenticate', error)
 
       if (error instanceof NotFoundException) {
         throw new UnauthorizedException({
