@@ -29,7 +29,8 @@ describe('AuthenticateCustomerUseCase', () => {
     })
 
     expect(result).toEqual({
-      token: 'token'
+      token: 'token',
+      customerId: 'any-id'
     })
   })
 

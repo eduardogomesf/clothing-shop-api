@@ -28,7 +28,8 @@ export class ImpAuthenticateCustomerUseCase implements AuthenticateCustomer {
     const token = await this.encrypter.encrypt({ id: customerByEmail.id })
 
     return {
-      token
+      token,
+      customerId: customerByEmail.id
     }
   }
 }

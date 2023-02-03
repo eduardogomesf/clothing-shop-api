@@ -5,6 +5,7 @@ export type AuthenticateCustomerDto = {
 
 export type AuthenticateCustomerResponse = {
   token: string
+  customerId: string
 }
 
 export interface AuthenticateCustomer {
