@@ -5,6 +5,7 @@ import { typeormConfig } from '../configs'
 import { CategoryModule } from './category.module'
 import { CustomerAddressModule } from './customer-address.module'
 import { CustomerModule } from './customer.module'
+import { ProductModule } from './product.module'
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { CustomerModule } from './customer.module'
     TypeOrmModule.forRoot(typeormConfig),
     CustomerModule,
     CustomerAddressModule,
-    CategoryModule
+    CategoryModule,
+    ProductModule
   ]
 })
 export class AppModule {}

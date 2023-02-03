@@ -1,2 +1,5 @@
 export * from './app.module'
 export * from './customer.module'
+export * from './customer-address.module'
+export * from './product.module'
+export * from './category.module'
