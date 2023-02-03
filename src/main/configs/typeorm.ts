@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm'
 import * as dotenv from 'dotenv'
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
-import { CustomerModel, CustomerAddressModel, CategoryModel, SubcategoryModel } from '../../infra/database/pg/models'
+import { CustomerModel, CustomerAddressModel, CategoryModel, SubcategoryModel, ProductModel, ProductVariationModel } from '../../infra/database/pg/models'
 
 dotenv.config()
 
@@ -12,7 +12,13 @@ export const typeormConfig: TypeOrmModuleOptions = {
   username: process.env.R_DB_USERNAME || 'postgres',
   password: process.env.R_DB_PASSWORD || 'postgres',
   database: process.env.R_DB_DATABASE || 'postgres',
-  entities: [CustomerModel, CustomerAddressModel, CategoryModel, SubcategoryModel],
+  entities: [CustomerModel,
+    CustomerAddressModel,
+    CategoryModel,
+    SubcategoryModel,
+    ProductModel,
+    ProductVariationModel
+  ],
   migrations: ['./dist/infra/database/pg/migrations/*.js']
 }
 

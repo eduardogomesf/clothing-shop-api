@@ -1,7 +1,8 @@
 import { Product } from '@/domain/entities/product'
-import { Column, OneToMany, PrimaryColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
 import { ProductVariationModel } from './product-variation.model'
 
+@Entity('products')
 export class ProductModel implements Product {
   @PrimaryColumn('uuid')
   id: string
@@ -13,7 +14,8 @@ export class ProductModel implements Product {
   description?: string
 
   @Column({
-    name: 'category_subcategory_id'
+    name: 'category_subcategory_id',
+    type: 'uuid'
   })
   categorySubCategoryId: string
 

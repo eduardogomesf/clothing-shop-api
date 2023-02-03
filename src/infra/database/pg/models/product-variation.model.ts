@@ -1,8 +1,9 @@
 import { ProductVariation } from '@/domain/entities/product-variation'
-import { Column, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
 import { Product } from '../../../../domain/entities/product'
 import { ProductModel } from './product.model'
 
+@Entity('product_variations')
 export class ProductVariationModel implements ProductVariation {
   @PrimaryColumn('uuid')
   id: string
@@ -25,7 +26,10 @@ export class ProductVariationModel implements ProductVariation {
   @Column('varchar')
   size?: string
 
-  @Column('varchar')
+  @Column({
+    name: 'image_url',
+    type: 'varchar'
+  })
   imageUrl?: string
 
   @ManyToOne(() => ProductModel, (product) => product.variations)
