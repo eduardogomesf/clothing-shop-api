@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import { MissingParamsException, NotFoundException } from '@/application/exceptions'
 import { ImpAddCustomerAddressUseCase, ImpDeleteCustomerAddressUseCase, ImpGetCustomerAddressesUseCase } from '@/application/use-cases/customer-address'
-import { Logger } from '@/shared/utils/logger.util'
+import { Logger } from '@/shared/utils'
 import { AddCustomerAddressDTO } from '../dto'
 import { AuthGuard } from '../guards/auth.guard'
 
@@ -35,7 +35,7 @@ export class CustomerAddressController {
     try {
       return await this.addCustomerAddressUseCase.add(body, customerId)
     } catch (error) {
-      Logger.logError('AddCustomerAddressController.execute', error.message)
+      Logger.logError('CustomerAddressController.createAddress', error.message)
 
       if (error instanceof MissingParamsException) {
         throw new BadRequestException({
@@ -63,7 +63,7 @@ export class CustomerAddressController {
     try {
       return await this.deleteCustomerAddressUseCase.deleteOne({ customerId, addressId })
     } catch (error) {
-      Logger.logError('DeleteOneCustomerAddressController.execute', error.message)
+      Logger.logError('CustomerAddressController.deleteAddress', error.message)
 
       if (error instanceof NotFoundException) {
         throw new HttpNotFoundException({
@@ -80,7 +80,7 @@ export class CustomerAddressController {
     try {
       return await this.getCustomerAddressesUseCase.getAll(customerId)
     } catch (error) {
-      Logger.logError('GetCustomerAddressesController.execute', error.message)
+      Logger.logError('CustomerAddressController.getAll', error.message)
       throw new InternalServerErrorException()
     }
   }
