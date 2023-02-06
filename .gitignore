@@ -4,6 +4,7 @@
 
 # Custom files
 .env
+package-lock.json
 
 # Logs
 logs
