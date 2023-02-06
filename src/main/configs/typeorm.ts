@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm'
 import * as dotenv from 'dotenv'
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
-import { CustomerModel, CustomerAddressModel, CategoryModel, SubcategoryModel, ProductModel, ProductVariationModel } from '../../infra/database/pg/models'
+import { CustomerModel, CustomerAddressModel, CategoryModel, SubcategoryModel, ProductModel, ProductVariationModel } from '../../infra/database/pg/typeorm/models'
 
 dotenv.config()
 
@@ -19,7 +19,7 @@ export const typeormConfig: TypeOrmModuleOptions = {
     ProductModel,
     ProductVariationModel
   ],
-  migrations: ['./dist/infra/database/pg/migrations/*.js']
+  migrations: ['./dist/infra/database/pg/migrations/typeorm/*.js']
 }
 
 export default new DataSource(typeormConfig as any)

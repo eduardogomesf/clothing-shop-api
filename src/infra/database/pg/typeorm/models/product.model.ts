@@ -20,5 +20,5 @@ export class ProductModel implements Product {
   categorySubCategoryId: string
 
   @OneToMany(() => ProductVariationModel, (productVariation) => productVariation.product)
-  variations?: ProductVariationModel[]
+  variations: ProductVariationModel[]
 }

@@ -1,6 +1,6 @@
 import { ProductVariation } from '@/domain/entities/product-variation'
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
-import { Product } from '../../../../domain/entities/product'
+import { Product } from '../../../../../domain/entities/product'
 import { ProductModel } from './product.model'
 
 @Entity('product_variations')

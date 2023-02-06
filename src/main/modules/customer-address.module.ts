@@ -5,7 +5,7 @@ import {
   ImpDeleteCustomerAddressUseCase,
   ImpGetCustomerAddressesUseCase
 } from '@/application/use-cases/customer-address'
-import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/repositories'
+import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/typeorm/repositories'
 import { GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
 import {
   CreateCustomerAddressRepository,
@@ -16,7 +16,7 @@ import {
 import {
   CustomerModel,
   CustomerAddressModel
-} from '@/infra/database/pg/models'
+} from '@/infra/database/pg/typeorm/models'
 import { CustomerAddressController } from '@/presentation/controllers'
 
 @Module({
