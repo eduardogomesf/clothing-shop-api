@@ -1,5 +1,5 @@
-import { CategoryModel } from '@/infra/database/pg/typeorm/models/category.model'
+import { Category } from '@/domain/entities/category'
 
 export interface GetCategoriesWithSubCategoriesRepository {
-  getAll: () => Promise<CategoryModel[]>
+  getAll: () => Promise<Category[]>
 }
