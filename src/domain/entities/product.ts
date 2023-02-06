@@ -5,5 +5,5 @@ export interface Product {
   name: string
   categorySubCategoryId: string
   description?: string
-  variations?: ProductVariation[]
+  variations: ProductVariation[]
 }
