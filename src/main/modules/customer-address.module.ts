@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
 import {
   ImpAddCustomerAddressUseCase,
   ImpDeleteCustomerAddressUseCase,
   ImpGetCustomerAddressesUseCase
 } from '@/application/use-cases/customer-address'
-import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/typeorm/repositories'
+import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/prisma/repositories'
 import { GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
 import {
   CreateCustomerAddressRepository,
@@ -13,16 +12,9 @@ import {
   GetCustomerAddressesRepository,
   GetOneCustomerAddressRepository
 } from '@/application/protocols/database/repositories/customer-address'
-import {
-  CustomerModel,
-  CustomerAddressModel
-} from '@/infra/database/pg/typeorm/models'
 import { CustomerAddressController } from '@/presentation/controllers'
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([CustomerModel, CustomerAddressModel])
-  ],
   providers: [
     PgCustomerRepository,
     PgCustomerAddressRepository,

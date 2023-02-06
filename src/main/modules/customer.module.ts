@@ -1,18 +1,13 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
 import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer'
 import { CustomerController } from '@/presentation/controllers'
-import { PgCustomerRepository } from '@/infra/database/pg/typeorm/repositories'
+import { PgCustomerRepository } from '@/infra/database/pg/prisma/repositories'
 import { BcryptAdapter, JwtAdapter } from '@/infra/utils/cryptography'
 import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
 import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography/'
-import { CustomerModel } from '@/infra/database/pg/typeorm/models'
 import { ENVS } from '../configs'
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([CustomerModel])
-  ],
   providers: [
     PgCustomerRepository,
     {

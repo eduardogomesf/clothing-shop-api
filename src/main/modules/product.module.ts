@@ -1,15 +1,10 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { ProductModel, ProductVariationModel } from '@/infra/database/pg/typeorm/models/'
-import { PgProductRepository } from '@/infra/database/pg/typeorm/repositories'
+import { PgProductRepository } from '@/infra/database/pg/prisma/repositories'
 import { ImpGetProductsUseCase } from '@/application/use-cases/product'
 import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/product'
 import { ProductController } from '@/presentation/controllers'
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([ProductModel, ProductVariationModel])
-  ],
   providers: [
     PgProductRepository,
     {
