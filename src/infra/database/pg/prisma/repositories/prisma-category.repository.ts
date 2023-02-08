@@ -4,7 +4,7 @@ import { Category } from '@prisma/client'
 import { prisma } from '../configs/prisma'
 
 @Injectable()
-export class PgCategoryRepository implements GetCategoriesWithSubCategoriesRepository {
+export class PrismaCategoryRepository implements GetCategoriesWithSubCategoriesRepository {
   async getAll (): Promise<Category[]> {
     return await prisma.category.findMany()
   }

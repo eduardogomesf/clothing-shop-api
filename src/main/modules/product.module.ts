@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { PgProductRepository } from '@/infra/database/pg/prisma/repositories'
+import { PrismaProductRepository } from '@/infra/database/pg/prisma/repositories'
 import { ImpGetProductsUseCase } from '@/application/use-cases/product'
 import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/product'
 import { ProductController } from '@/presentation/controllers'
@@ -8,13 +8,13 @@ import { PrismaProductMapper } from '@/infra/database/pg/prisma/mappers/prisma-p
 @Module({
   providers: [
     PrismaProductMapper,
-    PgProductRepository,
+    PrismaProductRepository,
     {
       provide: ImpGetProductsUseCase,
       useFactory: (getAllProductsWithFiltersRepository: GetAllProductsWithFiltersRepository) => {
         return new ImpGetProductsUseCase(getAllProductsWithFiltersRepository)
       },
-      inject: [PgProductRepository]
+      inject: [PrismaProductRepository]
     }
   ],
   controllers: [

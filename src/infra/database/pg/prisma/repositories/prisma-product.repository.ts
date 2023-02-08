@@ -4,7 +4,7 @@ import { prisma } from '../configs/prisma'
 import { PrismaProductMapper } from '../mappers/prisma-product.mapper'
 
 @Injectable()
-export class PgProductRepository implements GetAllProductsWithFiltersRepository {
+export class PrismaProductRepository implements GetAllProductsWithFiltersRepository {
   constructor(
     private readonly prismaProductMapper: PrismaProductMapper
   ) {}

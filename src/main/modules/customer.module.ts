@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ImpCreateCustomerUseCase, ImpAuthenticateCustomerUseCase } from '@/application/use-cases/customer'
 import { CustomerController } from '@/presentation/controllers'
-import { PgCustomerRepository } from '@/infra/database/pg/prisma/repositories'
+import { PrismaCustomerRepository } from '@/infra/database/pg/prisma/repositories'
 import { BcryptAdapter, JwtAdapter } from '@/infra/utils/cryptography'
 import { CreateCustomerRepository, GetCustomerByEmailRepository } from '@/application/protocols/database/repositories/customer'
 import { Hasher, HashComparer, Encrypter } from '@/application/protocols/utils/cryptography/'
@@ -9,7 +9,7 @@ import { ENVS } from '../configs'
 
 @Module({
   providers: [
-    PgCustomerRepository,
+    PrismaCustomerRepository,
     {
       provide: BcryptAdapter,
       useFactory: () => {
@@ -21,7 +21,7 @@ import { ENVS } from '../configs'
       useFactory: (createCustomerRepository: CreateCustomerRepository, hasher: Hasher, getCustomerByEmailRepository: GetCustomerByEmailRepository) => {
         return new ImpCreateCustomerUseCase(createCustomerRepository, hasher, getCustomerByEmailRepository)
       },
-      inject: [PgCustomerRepository, BcryptAdapter, PgCustomerRepository]
+      inject: [PrismaCustomerRepository, BcryptAdapter, PrismaCustomerRepository]
     },
     {
       provide: JwtAdapter,
@@ -34,7 +34,7 @@ import { ENVS } from '../configs'
       useFactory: (getCustomerByEmailRepository: GetCustomerByEmailRepository, hashComparer: HashComparer, encrypter: Encrypter) => {
         return new ImpAuthenticateCustomerUseCase(getCustomerByEmailRepository, hashComparer, encrypter)
       },
-      inject: [PgCustomerRepository, BcryptAdapter, JwtAdapter]
+      inject: [PrismaCustomerRepository, BcryptAdapter, JwtAdapter]
     }
   ],
   controllers: [

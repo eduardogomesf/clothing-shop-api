@@ -12,7 +12,7 @@ import { CustomerAddress } from '@/domain/entities'
 import { prisma } from '../configs/prisma'
 
 @Injectable()
-export class PgCustomerAddressRepository implements
+export class PrismaCustomerAddressRepository implements
   CreateCustomerAddressRepository, GetCustomerAddressesRepository,
   GetOneCustomerAddressRepository, DeleteOneCustomerAddressRepository {
   async create (createAddress: CreateCustomerAddressRepositoryDTO): Promise<CustomerAddress> {

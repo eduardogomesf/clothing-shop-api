@@ -9,7 +9,7 @@ import {
 import { prisma } from '../configs/prisma'
 
 @Injectable()
-export class PgCustomerRepository implements CreateCustomerRepository, GetCustomerByEmailRepository, GetCustomerByIdRepository {
+export class PrismaCustomerRepository implements CreateCustomerRepository, GetCustomerByEmailRepository, GetCustomerByIdRepository {
   async create (createDto: CreateCustomerRepositoryDto): Promise<Customer> {
     return await prisma.customer.create({
       data: createDto

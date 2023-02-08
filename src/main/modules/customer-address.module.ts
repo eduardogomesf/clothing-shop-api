@@ -4,7 +4,7 @@ import {
   ImpDeleteCustomerAddressUseCase,
   ImpGetCustomerAddressesUseCase
 } from '@/application/use-cases/customer-address'
-import { PgCustomerRepository, PgCustomerAddressRepository } from '@/infra/database/pg/prisma/repositories'
+import { PrismaCustomerRepository, PrismaCustomerAddressRepository } from '@/infra/database/pg/prisma/repositories'
 import { GetCustomerByIdRepository } from '@/application/protocols/database/repositories/customer'
 import {
   CreateCustomerAddressRepository,
@@ -16,28 +16,28 @@ import { CustomerAddressController } from '@/presentation/controllers'
 
 @Module({
   providers: [
-    PgCustomerRepository,
-    PgCustomerAddressRepository,
+    PrismaCustomerRepository,
+    PrismaCustomerAddressRepository,
     {
       provide: ImpAddCustomerAddressUseCase,
       useFactory: (getCustomerByIdRepository: GetCustomerByIdRepository, createCustomerAddressRepository: CreateCustomerAddressRepository) => {
         return new ImpAddCustomerAddressUseCase(getCustomerByIdRepository, createCustomerAddressRepository)
       },
-      inject: [PgCustomerRepository, PgCustomerAddressRepository]
+      inject: [PrismaCustomerRepository, PrismaCustomerAddressRepository]
     },
     {
       provide: ImpGetCustomerAddressesUseCase,
       useFactory: (getCustomerAddressesRepository: GetCustomerAddressesRepository) => {
         return new ImpGetCustomerAddressesUseCase(getCustomerAddressesRepository)
       },
-      inject: [PgCustomerAddressRepository]
+      inject: [PrismaCustomerAddressRepository]
     },
     {
       provide: ImpDeleteCustomerAddressUseCase,
       useFactory: (getOneCustomerAddressRepository: GetOneCustomerAddressRepository, deleteOneCustomerAddressRepository: DeleteOneCustomerAddressRepository) => {
         return new ImpDeleteCustomerAddressUseCase(getOneCustomerAddressRepository, deleteOneCustomerAddressRepository)
       },
-      inject: [PgCustomerAddressRepository, PgCustomerAddressRepository]
+      inject: [PrismaCustomerAddressRepository, PrismaCustomerAddressRepository]
     }
   ],
   controllers: [
