@@ -13,9 +13,11 @@ import {
   GetOneCustomerAddressRepository
 } from '@/application/protocols/database/repositories/customer-address'
 import { CustomerAddressController } from '@/presentation/controllers'
+import { PrismaCustomerAddressMapper } from '@/infra/database/pg/prisma/mappers'
 
 @Module({
   providers: [
+    PrismaCustomerAddressMapper,
     PrismaCustomerRepository,
     PrismaCustomerAddressRepository,
     {

@@ -10,11 +10,16 @@ import {
 import { Injectable } from '@nestjs/common'
 import { CustomerAddress } from '@/domain/entities'
 import { prisma } from '../configs/prisma'
+import { PrismaCustomerAddressMapper } from '../mappers/prisma-customer-address.mapper'
 
 @Injectable()
 export class PrismaCustomerAddressRepository implements
   CreateCustomerAddressRepository, GetCustomerAddressesRepository,
   GetOneCustomerAddressRepository, DeleteOneCustomerAddressRepository {
+  constructor(
+    private readonly prismaCustomerAddressMapper: PrismaCustomerAddressMapper
+  ) {}
+
   async create (createAddress: CreateCustomerAddressRepositoryDTO): Promise<CustomerAddress> {
     return await prisma.customerAddress.create({
       data: createAddress
@@ -22,11 +27,12 @@ export class PrismaCustomerAddressRepository implements
   };
 
   async getAllByCustomerId (customerId: string): Promise<CustomerAddress[]> {
-    return await prisma.customerAddress.findMany({
+    const result = await prisma.customerAddress.findMany({
       where: {
         customerId
       }
     })
+    return this.prismaCustomerAddressMapper.mapAddresses(result)
   }
 
   async getOne (dto: GetOneCustomerAddressRepositoryDTO): Promise<CustomerAddress> {
