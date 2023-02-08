@@ -1,6 +1,6 @@
-import { Product } from '@/domain/entities/product'
+import { Product } from '@/domain/entities'
 
-export interface GetAllProductsWithFiltersRepositoryDTO {
+export type GetAllProductsWithFiltersRepositoryDTO = {
   minPrice?: number
   maxPrice?: number
   search?: string
@@ -10,6 +10,8 @@ export interface GetAllProductsWithFiltersRepositoryDTO {
   limit: number
 }
 
+export type GetAllProductsWithFiltersRepositoryResponse = Product
+
 export interface GetAllProductsWithFiltersRepository {
-  getWithFilters: (filters: GetAllProductsWithFiltersRepositoryDTO) => Promise<Product[]>
+  getWithFilters: (filters: GetAllProductsWithFiltersRepositoryDTO) => Promise<GetAllProductsWithFiltersRepositoryResponse[]>
 }

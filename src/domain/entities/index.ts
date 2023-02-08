@@ -1,2 +1,6 @@
 export * from './customer'
 export * from './customer-address'
+export * from './category'
+export * from './product'
+export * from './product-variation'
+export * from './subcategory'
