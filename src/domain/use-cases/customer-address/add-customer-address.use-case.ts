@@ -1,5 +1,3 @@
-import { CustomerAddress } from '../../entities'
-
 export type AddCustomerAddressUseCaseDTO = {
   street: string
   number: number
@@ -11,6 +9,10 @@ export type AddCustomerAddressUseCaseDTO = {
   complement?: string
 }
 
+export type AddCustomerAddressUseCaseResponse = {
+  id: string
+}
+
 export interface AddCustomerAddressUseCase {
-  add: (address: AddCustomerAddressUseCaseDTO, customerId: string) => Promise<CustomerAddress>
+  add: (address: AddCustomerAddressUseCaseDTO, customerId: string) => Promise<AddCustomerAddressUseCaseResponse>
 }

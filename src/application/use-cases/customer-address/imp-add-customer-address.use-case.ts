@@ -1,5 +1,4 @@
-import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO } from '@/domain/use-cases/customer-address'
-import { CustomerAddress } from '@/domain/entities/'
+import { AddCustomerAddressUseCase, AddCustomerAddressUseCaseDTO, AddCustomerAddressUseCaseResponse } from '@/domain/use-cases/customer-address'
 import { GetCustomerByIdRepository } from '../../protocols/database/repositories/customer'
 import { CreateCustomerAddressRepository } from '../../protocols/database/repositories/customer-address'
 import { MissingParamsException, NotFoundException } from '../../exceptions'
@@ -11,7 +10,7 @@ export class ImpAddCustomerAddressUseCase implements AddCustomerAddressUseCase {
     private readonly createCustomerAddressRepository: CreateCustomerAddressRepository
   ) {}
 
-  async add (addressData: AddCustomerAddressUseCaseDTO, customerId: string): Promise<CustomerAddress> {
+  async add (addressData: AddCustomerAddressUseCaseDTO, customerId: string): Promise<AddCustomerAddressUseCaseResponse> {
     const missingParamsValidation = PayloadValidator.isAnyParamMissing(
       ['street', 'number', 'neighborhood', 'city', 'state', 'country', 'postalCode'],
       addressData
@@ -33,6 +32,8 @@ export class ImpAddCustomerAddressUseCase implements AddCustomerAddressUseCase {
       isMain: false
     }
 
-    return await this.createCustomerAddressRepository.create(addressToAdd)
+    const { id } = await this.createCustomerAddressRepository.create(addressToAdd)
+
+    return { id }
   };
 }
