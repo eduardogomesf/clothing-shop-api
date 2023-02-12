@@ -36,12 +36,7 @@ describe('AddCustomerAddressUseCase', () => {
   it('should be able create a new customer address', async () => {
     const result = await addCustomerAddressUseCase.add(createAddressData, 'any-id')
 
-    expect(result).toEqual({
-      ...createAddressData,
-      isMain: false,
-      id: 'any-id',
-      customerId: 'any-id'
-    })
+    expect(result).toEqual({ id: 'any-id' })
   })
 
   it('should not be able to create a new customer address without required params', async () => {

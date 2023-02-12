@@ -1,8 +1,8 @@
 import { GetCategoriesWithSubCategoriesRepository } from '../../../../src/application/protocols/database/repositories/category/get-categories-with-subcategories.repository'
-import { CategoryModel } from '../../../../src/infra/database/pg/models/category.model'
+import { Category } from '../../../../src/domain/entities'
 
 export class CategoryRepositoryStub implements GetCategoriesWithSubCategoriesRepository {
-  getAll (): Promise<CategoryModel[]> {
+  getAll (): Promise<Category[]> {
     return Promise.resolve([
       {
         id: 'any-category-id',
