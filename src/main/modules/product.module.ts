@@ -1,22 +1,35 @@
 import { Module } from '@nestjs/common'
-import { PrismaProductRepository } from '@/infra/database/pg/prisma/repositories'
+import { PrismaProductRepository, PrismaCategorySubcategoryRepository } from '@/infra/database/pg/prisma/repositories'
 import { ImpGetProductsUseCase } from '@/application/use-cases/product'
 import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/product'
 import { ProductController } from '@/presentation/controllers'
 import { PrismaProductMapper } from '@/infra/database/pg/prisma/mappers'
 import { PrismaProductFilter } from '@/infra/database/pg/prisma/filters'
+import {
+  GetCategorySubcategoryIdByCategoryAndSubCategoryRepository,
+  GetCategorySubcategoryIdsByCategoryIdRepository
+} from '@/application/protocols/database/repositories/category'
 
 @Module({
   providers: [
     PrismaProductMapper,
     PrismaProductFilter,
     PrismaProductRepository,
+    PrismaCategorySubcategoryRepository,
     {
       provide: ImpGetProductsUseCase,
-      useFactory: (getAllProductsWithFiltersRepository: GetAllProductsWithFiltersRepository) => {
-        return new ImpGetProductsUseCase(getAllProductsWithFiltersRepository)
+      useFactory: (
+        getAllProductsWithFiltersRepository: GetAllProductsWithFiltersRepository,
+        getCategorySubcategoryIdByCategoryAndSubCategoryRepository: GetCategorySubcategoryIdByCategoryAndSubCategoryRepository,
+        getCategorySubcategoryIdsByCategoryIdRepository: GetCategorySubcategoryIdsByCategoryIdRepository
+      ) => {
+        return new ImpGetProductsUseCase(
+          getAllProductsWithFiltersRepository,
+          getCategorySubcategoryIdByCategoryAndSubCategoryRepository,
+          getCategorySubcategoryIdsByCategoryIdRepository
+        )
       },
-      inject: [PrismaProductRepository]
+      inject: [PrismaProductRepository, PrismaCategorySubcategoryRepository, PrismaCategorySubcategoryRepository]
     }
   ],
   controllers: [

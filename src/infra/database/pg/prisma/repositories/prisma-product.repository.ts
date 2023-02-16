@@ -18,7 +18,9 @@ export class PrismaProductRepository implements GetAllProductsWithFiltersReposit
       .addSearch(filters.search)
       .addMinPrice(filters.minPrice)
       .addMaxPrice(filters.maxPrice)
+      .addCategorySubcategoryIds(filters.categorySubcategoryIds)
       .getResult()
+
     const result = await prisma.product.findMany({ ...prismaFilters } as any)
     return this.prismaProductMapper.mapProductsWithVariations(result as any)
   }

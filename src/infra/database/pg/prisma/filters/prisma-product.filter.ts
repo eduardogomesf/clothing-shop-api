@@ -88,6 +88,19 @@ export class PrismaProductFilter {
     return this
   }
 
+  addCategorySubcategoryIds (ids: string[]) {
+    if (!ids || ids.length <= 0) return this
+
+    this.filters.where = {
+      ...this.filters.where,
+      categorySubcategoryId: {
+        in: ids
+      }
+    }
+
+    return this
+  }
+
   getResult () {
     return this.filters
   }
