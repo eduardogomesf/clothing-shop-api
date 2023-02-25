@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { PrismaProductRepository, PrismaCategorySubcategoryRepository } from '@/infra/database/pg/prisma/repositories'
-import { ImpGetProductsUseCase } from '@/application/use-cases/product'
-import { GetAllProductsWithFiltersRepository } from '@/application/protocols/database/repositories/product'
+import { ImpGetProductDetailsByIdUseCase, ImpGetProductsUseCase } from '@/application/use-cases/product'
+import { GetAllProductsWithFiltersRepository, GetProductByIdWithVariationsRepository } from '@/application/protocols/database/repositories/product'
 import { ProductController } from '@/presentation/controllers'
 import { PrismaProductMapper } from '@/infra/database/pg/prisma/mappers'
 import { PrismaProductFilter } from '@/infra/database/pg/prisma/filters'
@@ -30,6 +30,13 @@ import {
         )
       },
       inject: [PrismaProductRepository, PrismaCategorySubcategoryRepository, PrismaCategorySubcategoryRepository]
+    },
+    {
+      provide: ImpGetProductDetailsByIdUseCase,
+      useFactory: (getProductByIdWithVariationsRepository: GetProductByIdWithVariationsRepository) => {
+        return new ImpGetProductDetailsByIdUseCase(getProductByIdWithVariationsRepository)
+      },
+      inject: [PrismaProductRepository]
     }
   ],
   controllers: [
