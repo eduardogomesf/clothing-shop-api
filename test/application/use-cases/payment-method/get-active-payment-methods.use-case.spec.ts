@@ -1,5 +1,5 @@
 import { GetActivePaymentMethodsRepository } from '../../../../src/application/protocols/database/repositories/payment-method'
-import { ImpGetActivePaymentMethodsUseCase } from '../../../../src/application/use-cases/payment-method/imp-get-active-payment-methods.use-case'
+import { ImpGetActivePaymentMethodsUseCase } from '../../../../src/application/use-cases/payment-method/'
 import { PaymentMethodRepositoryStub } from '../../mocks/databases/payment-method.repository.mock'
 
 describe('GetActivePaymentMethodsUseCase', () => {

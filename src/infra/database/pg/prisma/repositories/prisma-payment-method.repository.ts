@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { GetActivePaymentMethodsRepository } from '@/application/protocols/database/repositories/payment-method'
 import { PaymentMethod } from '@/domain/entities/payment-method'
 import { prisma } from '../configs/prisma'
-import { PrismaPaymentMethodMapper } from '../mappers/prisma-payment-method.mapper'
+import { PrismaPaymentMethodMapper } from '../mappers'
 
 @Injectable()
 export class PrismaPaymentMethodRepository implements GetActivePaymentMethodsRepository {
