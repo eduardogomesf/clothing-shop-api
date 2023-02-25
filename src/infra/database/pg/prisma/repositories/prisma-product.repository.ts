@@ -1,11 +1,17 @@
 import { Injectable } from '@nestjs/common'
-import { GetAllProductsWithFiltersRepository, GetAllProductsWithFiltersRepositoryDTO, GetAllProductsWithFiltersRepositoryResponse } from '@/application/protocols/database/repositories/product'
+import {
+  GetAllProductsWithFiltersRepository,
+  GetAllProductsWithFiltersRepositoryDTO,
+  GetAllProductsWithFiltersRepositoryResponse,
+  GetProductByIdWithVariationsRepository,
+  GetProductByIdWithVariationsRepositoryResponse
+} from '@/application/protocols/database/repositories/product'
 import { prisma } from '../configs/prisma'
 import { PrismaProductMapper } from '../mappers/prisma-product.mapper'
 import { PrismaProductFilter } from '../filters'
 
 @Injectable()
-export class PrismaProductRepository implements GetAllProductsWithFiltersRepository {
+export class PrismaProductRepository implements GetAllProductsWithFiltersRepository, GetProductByIdWithVariationsRepository {
   constructor(
     private readonly prismaProductMapper: PrismaProductMapper,
     private readonly productFilter: PrismaProductFilter
@@ -23,5 +29,22 @@ export class PrismaProductRepository implements GetAllProductsWithFiltersReposit
 
     const result = await prisma.product.findMany({ ...prismaFilters } as any)
     return this.prismaProductMapper.mapProductsWithVariations(result as any)
+  }
+
+  async getById (id: string): Promise<GetProductByIdWithVariationsRepositoryResponse> {
+    const result = await prisma.product.findFirst({
+      where: { id },
+      include: {
+        variations: true,
+        categorySubcategory: {
+          include: {
+            category: true,
+            subcategory: true
+          }
+        }
+      }
+    })
+
+    return this.prismaProductMapper.mapProductDetailsWithVariations(result)
   }
 }
