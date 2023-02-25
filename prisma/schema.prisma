@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Customer {
-  id                String            @id(map: "PK_133ec679a801fab5e070f73d3ea") @default(dbgenerated("uuid_generate_v4()"))
+  id                String            @id(map: "PK_133ec679a801fab5e070f73d3ea") @default(uuid())
   name              String
   cellphoneNumber   String            @map("cellphone_number")
   email             String            @unique(map: "UQ_8536b8b85c06969f84f0c098b03")
@@ -21,7 +21,7 @@ model Customer {
 }
 
 model CustomerAddress {
-  id           String   @id(map: "PK_336bda7b0a0cd04241f719fc834") @default(dbgenerated("uuid_generate_v4()"))
+  id           String   @id(map: "PK_336bda7b0a0cd04241f719fc834") @default(uuid())
   street       String
   number       Int
   neighborhood String
@@ -40,7 +40,7 @@ model CustomerAddress {
 }
 
 model Category {
-  id                      String                @id(map: "PK_24dbc6126a28ff948da33e97d3b") @default(dbgenerated("uuid_generate_v4()"))
+  id                      String                @id(map: "PK_24dbc6126a28ff948da33e97d3b") @default(uuid())
   name                    String                @unique(map: "UQ_8b0be371d28245da6e4f4b61878")
   description             String?
   createdAt               DateTime              @default(now()) @map("created_at")
@@ -51,7 +51,7 @@ model Category {
 }
 
 model SubCategory {
-  id                      String                @id(map: "PK_793ef34ad0a3f86f09d4837007c") @default(dbgenerated("uuid_generate_v4()"))
+  id                      String                @id(map: "PK_793ef34ad0a3f86f09d4837007c") @default(uuid())
   name                    String                @unique(map: "UQ_d1a3a67c9c5d440edf414af1271")
   description             String?
   createdAt               DateTime              @default(now()) @map("created_at")
@@ -62,7 +62,7 @@ model SubCategory {
 }
 
 model CategorySubCategory {
-  id            String      @id(map: "PK_c7a667a9c837e1b64fd4853f545") @default(dbgenerated("uuid_generate_v4()"))
+  id            String      @id(map: "PK_c7a667a9c837e1b64fd4853f545") @default(uuid())
   categoryId    String      @map("category_id")
   subcategoryId String      @map("subcategory_id")
   category      Category    @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_8f33ce13d40e4406869b3f46677")
@@ -73,7 +73,7 @@ model CategorySubCategory {
 }
 
 model Product {
-  id                    String              @id(map: "PK_0806c755e0aca124e67c0cf6d7d") @default(dbgenerated("uuid_generate_v4()"))
+  id                    String              @id(map: "PK_0806c755e0aca124e67c0cf6d7d") @default(uuid())
   name                  String
   description           String?
   categorySubcategoryId String              @map("category_subcategory_id")
@@ -86,7 +86,7 @@ model Product {
 }
 
 model ProductVariation {
-  id        String   @id(map: "PK_353249b2d301e047dde9ef0487c") @default(dbgenerated("uuid_generate_v4()"))
+  id        String   @id(map: "PK_353249b2d301e047dde9ef0487c") @default(uuid())
   price     Float
   color     String?
   size      String?
@@ -98,4 +98,14 @@ model ProductVariation {
   product   Product  @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_fk")
 
   @@map("product_variations")
+}
+
+model PaymentMethod {
+  id        String   @id() @default(uuid())
+  name      String
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("payment_methods")
 }
